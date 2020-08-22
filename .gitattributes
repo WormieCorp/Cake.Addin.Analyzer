@@ -1,0 +1,14 @@
+* text=auto whitespace=space-before-tab,indent-with-non-tab,tabwidth=4
+
+*.cs    text    diff=csharp
+*.cake  text    diff=csharp
+
+*.ps1   text    eol=crlf working-tree-encoding=UTF-16LE-BOM
+*.bat   text    eol=crlf working-tree-encoding=UTF-16LE-BOM
+*.sh    text    eol=lf
+
+*.md    text    whitespace=-blank-at-eol,-indent-with-non-tab,tab-in-indent
+
+# While these are text files, we should still treat them as binaries
+*.resx  binary
+*.Designer.cs   binary
