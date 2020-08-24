@@ -71,30 +71,6 @@ namespace CakeAddin
 		}
 
 		[Test]
-		public async Task ShouldReportWarningWhenNoCategoryAttributeIsUsedAnAliasClass()
-		{
-			var test = @"
-namespace CakeAddin
-{
-    public static class {|#0:CakeAddinAliases|}
-    {
-    }
-}";
-			var fixtest = @"
-namespace CakeAddin
-{
-    [Cake.Core.Annotations.CakeAliasCategory(""REPLACE_ME"")]
-    public static class CakeAddinAliases
-    {
-    }
-}";
-
-			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
-				.WithLocation(0).WithArguments("CakeAddinAliases");
-			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
-		}
-
-		[Test]
 		public async Task ShouldReportAndFixWarningWhenNoCategoryAttributeIsUsedWithShortName()
 		{
 			var test = @"
@@ -112,6 +88,30 @@ using Cake.Core.Annotations;
 namespace CakeAddin
 {
     [CakeAliasCategory(""REPLACE_ME"")]
+    public static class CakeAddinAliases
+    {
+    }
+}";
+
+			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
+				.WithLocation(0).WithArguments("CakeAddinAliases");
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+		}
+
+		[Test]
+		public async Task ShouldReportWarningWhenNoCategoryAttributeIsUsedAnAliasClass()
+		{
+			var test = @"
+namespace CakeAddin
+{
+    public static class {|#0:CakeAddinAliases|}
+    {
+    }
+}";
+			var fixtest = @"
+namespace CakeAddin
+{
+    [Cake.Core.Annotations.CakeAliasCategory(""REPLACE_ME"")]
     public static class CakeAddinAliases
     {
     }

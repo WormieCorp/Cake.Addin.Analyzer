@@ -1,7 +1,6 @@
 namespace CakeContrib.Analyzer.CodeFixes
 {
 	using System;
-	using System.Collections.Immutable;
 	using System.Composition;
 	using System.Linq;
 	using System.Threading;
@@ -13,32 +12,23 @@ namespace CakeContrib.Analyzer.CodeFixes
 	using Microsoft.CodeAnalysis.CSharp;
 	using Microsoft.CodeAnalysis.CSharp.Syntax;
 	using Microsoft.CodeAnalysis.Formatting;
-	using Microsoft.CodeAnalysis.Simplification;
 
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AliasClassCategoryCodeFixProvider)), Shared]
-	public class AliasClassCategoryCodeFixProvider : CodeFixProvider
+	public class AliasClassCategoryCodeFixProvider : BaseCodeFixProvider
 	{
-		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(Identifiers.AliasClassCategoryRule);
-
-		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
+		public AliasClassCategoryCodeFixProvider()
+			: base(Identifiers.AliasClassCategoryRule)
+		{
+		}
 
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
-			var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-
-			if (root is null)
-			{
-				return;
-			}
+			var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false) ?? throw new ApplicationException("Unexpected null root was found");
 
 			var diagnostic = context.Diagnostics.First();
 			var diagnosticSpan = diagnostic.Location.SourceSpan;
 
-			var parentToken = root.FindToken(diagnosticSpan.Start).Parent;
-			if (parentToken is null)
-			{
-				return;
-			}
+			var parentToken = root.FindToken(diagnosticSpan.Start).Parent ?? throw new ApplicationException("No parent was found for the current diagnostic token!");
 
 			var declaration = parentToken.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First();
 
@@ -60,7 +50,7 @@ namespace CakeContrib.Analyzer.CodeFixes
 					SyntaxFactory.Literal("REPLACE_ME")));
 			var newAttribute = SyntaxFactory.Attribute(qualifiedName)
 				.AddArgumentListArguments(argument);
-			var newAttributeList = SyntaxFactory.AttributeList().AddAttributes(newAttribute);
+			var newAttributeList = SyntaxFactory.AttributeList().AddAttributes(newAttribute).WithAdditionalAnnotations(Formatter.Annotation);
 			var newDeclaration = classDeclaration.AddAttributeLists(newAttributeList);
 
 			var oldRoot = await document.GetSyntaxRootAsync(cancellationToken);
@@ -71,38 +61,6 @@ namespace CakeContrib.Analyzer.CodeFixes
 			var newRoot = oldRoot.ReplaceNode(classDeclaration, newDeclaration);
 
 			return document.WithSyntaxRoot(newRoot);
-		}
-
-		private static NameSyntax BuildQualifiedName(params string[] names)
-		{
-			if (names.Length == 0)
-			{
-				throw new ArgumentOutOfRangeException(nameof(names), "We need at least 1 name to build the correct same syntax");
-			}
-			else if (names.Length == 1)
-			{
-				return SyntaxFactory.IdentifierName(names[0]);
-			}
-
-			NameSyntax? qualifiedName = default;
-
-			foreach (var name in names)
-			{
-				var identifierName = SyntaxFactory.IdentifierName(name);
-				if (qualifiedName is null)
-				{
-					qualifiedName = identifierName;
-				}
-				else
-				{
-					qualifiedName = SyntaxFactory.QualifiedName(qualifiedName, identifierName)
-						.WithAdditionalAnnotations(Simplifier.Annotation);
-				}
-			}
-
-#pragma warning disable CS8603 // Possible null reference return.
-			return qualifiedName;
-#pragma warning restore CS8603 // Possible null reference return.
 		}
 	}
 }
