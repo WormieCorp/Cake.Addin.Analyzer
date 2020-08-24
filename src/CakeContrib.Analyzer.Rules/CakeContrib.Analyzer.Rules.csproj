@@ -5,7 +5,8 @@
 		<IsPackable>false</IsPackable>
 
 		<!-- Avoid ID conflicts with the package project. -->
-		<PackageId>*$(MSBuildProjectFullPath)*</PackageId>
+		<!--<PackageId>*$(MSBuildProjectFullPath)*</PackageId>-->
+		<RootNamespace>CakeContrib.Analyzer</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

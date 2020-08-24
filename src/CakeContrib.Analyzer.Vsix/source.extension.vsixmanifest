@@ -12,8 +12,8 @@
 		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.7.2,)" />
 	</Dependencies>
 	<Assets>
-		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="CakeContrib.Analyzer" Path="|CakeContrib.Analyzer|" />
-		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="CakeContrib.Analyzer" Path="|CakeContrib.Analyzer|" />
+		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="CakeContrib.Analyzer.Rules" Path="|CakeContrib.Analyzer.Rules|" />
+		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="CakeContrib.Analyzer.Rules" Path="|CakeContrib.Analyzer.Rules|" />
 		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="CakeContrib.Analyzer.CodeFixes" Path="|CakeContrib.Analyzer.CodeFixes|" />
 		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="CakeContrib.Analyzer.CodeFixes" Path="|CakeContrib.Analyzer.CodeFixes|" />
 	</Assets>

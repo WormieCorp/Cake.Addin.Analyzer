@@ -39,7 +39,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CakeContrib.Analyzer.CodeFixes\CakeContrib.Analyzer.CodeFixes.csproj" />
-		<ProjectReference Include="..\CakeContrib.Analyzer\CakeContrib.Analyzer.csproj" />
+		<ProjectReference Include="..\CakeContrib.Analyzer.Rules\CakeContrib.Analyzer.Rules.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -48,7 +48,7 @@
 
 	<Target Name="_AddAnalyzersToOutput">
 		<ItemGroup>
-			<TfmSpecificPackageFile Include="$(OutputPath)\CakeContrib.Analyzer.dll" PackagePath="analyzers/dotnet/cs" />
+			<TfmSpecificPackageFile Include="$(OutputPath)\CakeContrib.Analyzer.Rules.dll" PackagePath="analyzers/dotnet/cs" />
 			<TfmSpecificPackageFile Include="$(OutputPath)\CakeContrib.Analyzer.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
 		</ItemGroup>
 	</Target>

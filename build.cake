@@ -1,79 +1,27 @@
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
-const string solution = "./src/CakeContrib.Analyzer_core.sln";
-const string vsixProject = "./src/CakeContrib.Analyzer.Vsix/CakeContrib.Analyzer.Vsix.csproj";
+#load nuget:https://ci.appveyor.com/nuget/cake-recipe?package=Cake.Recipe&version=2.0.0-alpha0363&prerelease
+#tool nuget:?package=NuGet.CommandLine&version=5.6.0
 
-Setup((context) =>
-{
-	var version = GitVersion(new GitVersionSettings
-	{
-		UpdateAssemblyInfo = false
-	});
+Environment.SetVariableNames();
 
-	return version;
-});
+BuildParameters.SetParameters(
+	context: Context,
+	buildSystem: BuildSystem,
+	sourceDirectoryPath: "./src",
+	solutionFilePath: "./src/CakeContrib.Analyzer_core.sln",
+	title: "CakeContrib.Analyzer",
+	repositoryOwner: "AdmiringWorm",
+	repositoryName: "CakeContrib.Analyzer",
+	//shouldRunDupFinder: false,
+	shouldUseDeterministicBuilds: true,
+	shouldUseTargetFrameworkPath: false,
+	shouldRunCodecov: true,
+	nugetConfig: "./src/NuGet.Config");
 
-Task("Restore")
-	.Does(() =>
-{
-	DotNetCoreRestore(solution);
-	DotNetCoreRestore(vsixProject);
-});
+BuildParameters.PrintParameters(Context);
 
-Task("Build")
-	.IsDependentOn("Restore")
-	.Does<GitVersion>((version) =>
-{
-	DotNetCoreBuild(solution, new DotNetCoreBuildSettings
-	{
-		Configuration = configuration,
-		MSBuildSettings = new DotNetCoreMSBuildSettings()
-			.SetVersionPrefix(version.MajorMinorPatch),
-		NoIncremental = true,
-		NoRestore     = true,
-		VersionSuffix = version.PreReleaseTag,
-	});
-});
+ToolSettings.SetToolSettings(
+	context: Context,
+	testCoverageExcludeByFile: "**/*Designer.cs;**/*.g.cs;**/*.g.i.cs",
+	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*");
 
-Task("Tests")
-	.IsDependentOn("Build")
-	.Does(() =>
-{
-	DotNetCoreTest(solution, new DotNetCoreTestSettings
-	{
-		Configuration = configuration,
-		NoBuild = true
-	});
-});
-
-Task("Create-VSix-Package")
-	.WithCriteria(IsRunningOnWindows)
-	.IsDependentOn("Restore")
-	.Does(() =>
-{
-	Warning("VSIX Extensions are not supported, and should only be used for debugging purposes");
-	var latestInstallation = VSWhereLatest();
-	var expectedPath = latestInstallation + "/MSBuild/Current/Bin/MSBuild.exe";
-	if (FileExists(expectedPath))
-	{
-		MSBuild(vsixProject, new MSBuildSettings
-		{
-			Configuration = configuration,
-			ToolPath = expectedPath
-		}.SetVerbosity(Verbosity.Minimal));
-	}
-});
-
-Task("Publish-GitHub-Packages")
-	.WithCriteria(BuildSystem.IsRunningOnGitHubActions)
-	.Does(() =>
-{
-	var packages = GetFiles($"./src/**/{configuration}/**/*.nupkg");
-	// TODO
-});
-
-Task("Default")
-	.IsDependentOn("Create-VSIX-Package")
-	.IsDependentOn("Tests");
-
-RunTarget(target);
+Build.RunDotNetCore();

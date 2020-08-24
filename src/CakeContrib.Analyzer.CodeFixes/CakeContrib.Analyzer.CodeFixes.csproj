@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\CakeContrib.Analyzer\CakeContrib.Analyzer.csproj" />
+		<ProjectReference Include="..\CakeContrib.Analyzer.Rules\CakeContrib.Analyzer.Rules.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

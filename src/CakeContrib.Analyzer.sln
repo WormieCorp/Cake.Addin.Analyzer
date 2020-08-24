@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer", "CakeContrib.Analyzer\CakeContrib.Analyzer.csproj", "{A98385FA-8731-4944-871E-2688B197746B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.Rules", "CakeContrib.Analyzer.Rules\CakeContrib.Analyzer.Rules.csproj", "{A98385FA-8731-4944-871E-2688B197746B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.CodeFixes", "CakeContrib.Analyzer.CodeFixes\CakeContrib.Analyzer.CodeFixes.csproj", "{4E4E6435-86FE-4267-8FA3-4FD67BA5987E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.Package", "CakeContrib.Analyzer.Package\CakeContrib.Analyzer.Package.csproj", "{162573C8-35E9-43FD-8B2E-D838353D5108}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.Test", "CakeContrib.Analyzer.Test\CakeContrib.Analyzer.Test.csproj", "{60A37886-AAC4-4BD9-914D-4B8D44FB8746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.Test", "CakeContrib.Analyzer.Tests\CakeContrib.Analyzer.Tests.csproj", "{60A37886-AAC4-4BD9-914D-4B8D44FB8746}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeContrib.Analyzer.Vsix", "CakeContrib.Analyzer.Vsix\CakeContrib.Analyzer.Vsix.csproj", "{3D9DAC95-A130-4E36-967B-4FDA195E689A}"
 EndProject

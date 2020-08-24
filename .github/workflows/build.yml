@@ -31,8 +31,6 @@ jobs:
           xcopy /s /y /d %DOTNET_31_ROOT% %DOTNET_ROOT%
         shell: cmd
       - name: Restore .NET Core tools
-        run: dotnet tool restore
-      - name: Build project
-        run: dotnet cake --target=Build
-      - name: Run unit tests
-        run: dotnet cake --target=Tests --exclusive=true
+        run: dotnet tool restore && dotnet cake --bootstrap
+      - name: Build and Test project
+        run: dotnet cake --verbosity=Diagnostic --target=CI
