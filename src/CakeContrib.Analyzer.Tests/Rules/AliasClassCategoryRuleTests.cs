@@ -5,7 +5,7 @@ namespace CakeContrib.Analyzer.Test.Rules
 	using NUnit.Framework;
 	using VerifyCS = CSharpCodeFixVerifier<
 		Analyzer.Rules.AliasClassCategoryRule,
-		Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
+		CodeFixes.AliasClassCategoryCodeFixProvider>;
 
 	public class AliasClassCategoryRuleTests
 	{
@@ -80,10 +80,46 @@ namespace CakeAddin
     {
     }
 }";
+			var fixtest = @"
+namespace CakeAddin
+{
+    [Cake.Core.Annotations.CakeAliasCategory(""REPLACE_ME"")]
+    public static class CakeAddinAliases
+    {
+    }
+}";
 
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
 				.WithLocation(0).WithArguments("CakeAddinAliases");
-			await VerifyCS.VerifyAnalyzerAsync(test, expected);
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+		}
+
+		[Test]
+		public async Task ShouldReportAndFixWarningWhenNoCategoryAttributeIsUsedWithShortName()
+		{
+			var test = @"
+using Cake.Core.Annotations;
+
+namespace CakeAddin
+{
+    public static class {|#0:CakeAddinAliases|}
+    {
+    }
+}";
+			var fixtest = @"
+using Cake.Core.Annotations;
+
+namespace CakeAddin
+{
+    [CakeAliasCategory(""REPLACE_ME"")]
+    public static class CakeAddinAliases
+    {
+    }
+}";
+
+			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
+				.WithLocation(0).WithArguments("CakeAddinAliases");
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
 		}
 	}
 }

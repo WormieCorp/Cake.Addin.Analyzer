@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CakeContrib.Analyzer {
+namespace CakeContrib.Analyzer.CodeFixes {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CakeContrib.Analyzer {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CakeContrib.Analyzer.CodeFixResources", typeof(CodeFixResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CakeContrib.Analyzer.CodeFixes.CodeFixResources", typeof(CodeFixResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace CakeContrib.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make uppercase.
+        ///   Looks up a localized string similar to Add Cake Alias Category attribute.
         /// </summary>
-        internal static string UpperCaseCodeFixTitle {
+        internal static string AliasClassCategoryTitle {
             get {
-                return ResourceManager.GetString("UpperCaseCodeFixTitle", resourceCulture);
+                return ResourceManager.GetString("AliasClassCategoryTitle", resourceCulture);
             }
         }
     }
