@@ -71,7 +71,7 @@ namespace CakeContrib.Analyzer.Rules
 				severity,
 				isEnabledByDefault,
 				description: description,
-				helpLinkUri: $"https://github.com/AdmiringWorm/CakeContrib.Analyzer/wiki/Rules/{id}",
+				helpLinkUri: $"https://github.com/AdmiringWorm/CakeContrib.Analyzer/wiki/Rules-{id}",
 				customTags: customTags);
 			return rule;
 		}
