@@ -4,7 +4,7 @@
 		<!-- We can only run .NET 4.6.1 on windows, due to mono having some required classes being inaccessible -->
 		<!-- https://github.com/AdmiringWorm/CakeContrib.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
 		<TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
-		<TargetFrameworks Condition="$(Platform)=='Windows'">$(TargetFrameworks);net461</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)'!='Unix'">$(TargetFrameworks);net461</TargetFrameworks>
 
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -18,7 +18,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-		<PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.7.1" Condition="$(TargetFramework.StartsWith('net4')) AND '$(Platform)' == 'Unix'" />
+		<PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.7.1" Condition="$(TargetFramework.StartsWith('net4')) AND '$(OS)' == 'Unix'" />
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="3.7.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.NUnit" Version="1.0.1-beta1.*" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.NUnit" Version="1.0.1-beta1.*" />
