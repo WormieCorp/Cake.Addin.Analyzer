@@ -48,6 +48,7 @@ Task("Tests")
 
 Task("Create-VSix-Package")
 	.WithCriteria(IsRunningOnWindows)
+	.IsDependentOn("Restore")
 	.Does(() =>
 {
 	Warning("VSIX Extensions are not supported, and should only be used for debugging purposes");
