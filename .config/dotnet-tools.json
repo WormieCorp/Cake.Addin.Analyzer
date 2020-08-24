@@ -5,6 +5,10 @@
 		"cake.tool": {
 			"version": "0.38.4",
 			"commands": ["dotnet-cake"]
+		},
+		"gitversion.tool": {
+			"version": "5.3.7",
+			"commands": ["dotnet-gitversion"]
 		}
 	}
 }
