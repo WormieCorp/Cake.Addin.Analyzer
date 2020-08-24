@@ -61,29 +61,29 @@ namespace CakeContrib.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type names should be all uppercase..
+        ///   Looks up a localized string similar to Cake aliases should be marked with a category to be easier discovered on cakebuild.net..
         /// </summary>
-        internal static string UpperCaseRuleDescription {
+        internal static string AliasClassCategoryDescription {
             get {
-                return ResourceManager.GetString("UpperCaseRuleDescription", resourceCulture);
+                return ResourceManager.GetString("AliasClassCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type name &apos;{0}&apos; contains lowercase letters.
+        ///   Looks up a localized string similar to The class {0} is not marked with a Cake Alias Category..
         /// </summary>
-        internal static string UpperCaseRuleMessageFormat {
+        internal static string AliasClassCategoryMessageFormat {
             get {
-                return ResourceManager.GetString("UpperCaseRuleMessageFormat", resourceCulture);
+                return ResourceManager.GetString("AliasClassCategoryMessageFormat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type name contains lowercase letters.
+        ///   Looks up a localized string similar to Missing Cake Alias Category.
         /// </summary>
-        internal static string UpperCaseRuleTitle {
+        internal static string AliasClassCategoryTitle {
             get {
-                return ResourceManager.GetString("UpperCaseRuleTitle", resourceCulture);
+                return ResourceManager.GetString("AliasClassCategoryTitle", resourceCulture);
             }
         }
     }

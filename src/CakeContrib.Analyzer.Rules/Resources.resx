@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UpperCaseRuleDescription" xml:space="preserve">
-    <value>Type names should be all uppercase.</value>
-    <comment>An optional longer localizable description of the diagnostic.</comment>
+  <data name="AliasClassCategoryDescription" xml:space="preserve">
+    <value>Cake aliases should be marked with a category to be easier discovered on cakebuild.net.</value>
   </data>
-  <data name="UpperCaseRuleMessageFormat" xml:space="preserve">
-    <value>Type name '{0}' contains lowercase letters</value>
-    <comment>The format-able message the diagnostic displays.</comment>
+  <data name="AliasClassCategoryMessageFormat" xml:space="preserve">
+    <value>The class {0} is not marked with a Cake Alias Category.</value>
   </data>
-  <data name="UpperCaseRuleTitle" xml:space="preserve">
-    <value>Type name contains lowercase letters</value>
-    <comment>The title of the diagnostic.</comment>
+  <data name="AliasClassCategoryTitle" xml:space="preserve">
+    <value>Missing Cake Alias Category</value>
   </data>
 </root>

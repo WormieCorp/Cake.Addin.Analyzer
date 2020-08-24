@@ -8,7 +8,22 @@ namespace CakeContrib.Analyzer.Rules
 
 	public abstract class BaseRule : DiagnosticAnalyzer
 	{
-		private static readonly List<DiagnosticDescriptor> _additionalRules = new List<DiagnosticDescriptor>();
+		private readonly List<DiagnosticDescriptor> _additionalRules = new List<DiagnosticDescriptor>();
+
+		protected BaseRule(
+			string id,
+			string titleName,
+			string descriptionName,
+			string messageFormatName,
+			string category,
+			DiagnosticSeverity severity = DiagnosticSeverity.Warning,
+			bool isEnabledByDefault = true,
+			params string[] customTags)
+		{
+			var rule = CreateRule(id, titleName, descriptionName, messageFormatName, category, severity, isEnabledByDefault, customTags);
+
+			Rule = rule;
+		}
 
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
 		{
@@ -18,8 +33,8 @@ namespace CakeContrib.Analyzer.Rules
 			}
 		}
 
-		protected static IReadOnlyList<DiagnosticDescriptor> AdditionalRules => _additionalRules;
-		protected static DiagnosticDescriptor Rule { get; private set; }
+		protected IReadOnlyList<DiagnosticDescriptor> AdditionalRules => this._additionalRules;
+		protected DiagnosticDescriptor Rule { get; private set; }
 
 		public override sealed void Initialize(AnalysisContext context)
 		{
@@ -27,18 +42,11 @@ namespace CakeContrib.Analyzer.Rules
 			RegisterActions(context);
 		}
 
-		protected static void AddAdditionalRules(string id, string title, string description, string messageFormatName, string category, DiagnosticSeverity severity = DiagnosticSeverity.Warning, bool isEnabledByDefault = true, params string[] customTags)
+		protected void AddAdditionalRules(string id, string title, string description, string messageFormatName, string category, DiagnosticSeverity severity = DiagnosticSeverity.Warning, bool isEnabledByDefault = true, params string[] customTags)
 		{
 			var rule = CreateRule(id, title, description, messageFormatName, category, severity, isEnabledByDefault, customTags);
 
-			_additionalRules.Add(rule);
-		}
-
-		protected static void SetRule(string id, string titleName, string descriptionName, string messageFormatName, string category, DiagnosticSeverity severity = DiagnosticSeverity.Warning, bool isEnabledByDefault = true, params string[] customTags)
-		{
-			var rule = CreateRule(id, titleName, descriptionName, messageFormatName, category, severity, isEnabledByDefault, customTags);
-
-			Rule = rule;
+			this._additionalRules.Add(rule);
 		}
 
 		protected virtual void ConfigureContext(AnalysisContext context)

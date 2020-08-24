@@ -1,5 +1,6 @@
 namespace CakeContrib.Analyzer.Test
 {
+	using System.Collections.Immutable;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using Microsoft.CodeAnalysis;
@@ -30,6 +31,11 @@ namespace CakeContrib.Analyzer.Test
 		{
 			var test = new Test {
 				TestCode = source,
+				ReferenceAssemblies =
+					ReferenceAssemblies.Default.AddPackages(
+						ImmutableArray.Create(
+							new PackageIdentity("Cake.Core", "0.38.4"),
+							new PackageIdentity("Cake.Common", "0.38.4"))),
 			};
 
 			test.ExpectedDiagnostics.AddRange(expected);
@@ -50,6 +56,11 @@ namespace CakeContrib.Analyzer.Test
 			var test = new Test {
 				TestCode = source,
 				FixedCode = fixedSource,
+				ReferenceAssemblies =
+					ReferenceAssemblies.Default.AddPackages(
+						ImmutableArray.Create(
+							new PackageIdentity("Cake.Core", "0.38.4"),
+							new PackageIdentity("Cake.Common", "0.38.4"))),
 			};
 
 			test.ExpectedDiagnostics.AddRange(expected);
