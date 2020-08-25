@@ -44,7 +44,8 @@ namespace CakeContrib.Analyzer.Rules
 
 			var attributes = methodDecl.AttributeLists.SelectMany(a => a.Attributes);
 			if (attributes.Any(a =>
-				HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakeMethodAliasAttribute")))
+				HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakeMethodAliasAttribute") ||
+				HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakePropertyAliasAttribute")))
 			{
 				return;
 			}

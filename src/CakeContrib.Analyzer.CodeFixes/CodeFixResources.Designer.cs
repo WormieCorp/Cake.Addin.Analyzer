@@ -22,7 +22,7 @@ namespace CakeContrib.Analyzer.CodeFixes {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CodeFixResources {
+    public class CodeFixResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CakeContrib.Analyzer.CodeFixes {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CakeContrib.Analyzer.CodeFixes.CodeFixResources", typeof(CodeFixResources).Assembly);
@@ -51,7 +51,7 @@ namespace CakeContrib.Analyzer.CodeFixes {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CakeContrib.Analyzer.CodeFixes {
         /// <summary>
         ///   Looks up a localized string similar to Add Cake Alias Category attribute.
         /// </summary>
-        internal static string AliasClassCategoryTitle {
+        public static string AliasClassCategoryTitle {
             get {
                 return ResourceManager.GetString("AliasClassCategoryTitle", resourceCulture);
             }
@@ -72,9 +72,18 @@ namespace CakeContrib.Analyzer.CodeFixes {
         /// <summary>
         ///   Looks up a localized string similar to Add Cake Method Alias attribute.
         /// </summary>
-        internal static string AliasMethodMarkedTitle {
+        public static string AliasMethodMarkedTitle {
             get {
                 return ResourceManager.GetString("AliasMethodMarkedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Cake Property Alias attribute.
+        /// </summary>
+        public static string AliasMethodPropertyMarkedTitle {
+            get {
+                return ResourceManager.GetString("AliasMethodPropertyMarkedTitle", resourceCulture);
             }
         }
     }

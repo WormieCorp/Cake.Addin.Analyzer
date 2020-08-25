@@ -31,12 +31,32 @@ namespace CakeContrib.Analyzer.CodeFixes
 					createChangedDocument: c => AddCakeMethodAliasAsync(context.Document, declaration, c),
 					equivalenceKey: nameof(CodeFixResources.AliasMethodMarkedTitle)),
 				diagnostic);
+
+			if (declaration.ParameterList.Parameters.Count == 1)
+			{
+				context.RegisterCodeFix(
+					CodeAction.Create(
+						title: CodeFixResources.AliasMethodPropertyMarkedTitle,
+						createChangedDocument: c => AddCakePropertyAliasAsync(context.Document, declaration, c),
+						equivalenceKey: nameof(CodeFixResources.AliasMethodPropertyMarkedTitle)),
+					diagnostic);
+			}
 		}
 
-		private static async Task<Document> AddCakeMethodAliasAsync(Document document, MethodDeclarationSyntax methodDeclaration, CancellationToken cancellationToken)
+		private static Task<Document> AddCakeMethodAliasAsync(Document document, MethodDeclarationSyntax methodDeclaration, CancellationToken cancellationToken)
 		{
 			var qualifiedName = BuildQualifiedName("Cake", "Core", "Annotations", "CakeMethodAliasAttribute");
+			return AddNewAttribute(document, methodDeclaration, qualifiedName, cancellationToken);
+		}
 
+		private static Task<Document> AddCakePropertyAliasAsync(Document document, MethodDeclarationSyntax methodDeclaration, CancellationToken cancellationToken)
+		{
+			var qualifiedName = BuildQualifiedName("Cake", "Core", "Annotations", "CakePropertyAliasAttribute");
+			return AddNewAttribute(document, methodDeclaration, qualifiedName, cancellationToken);
+		}
+
+		private static async Task<Document> AddNewAttribute(Document document, MethodDeclarationSyntax methodDeclaration, NameSyntax qualifiedName, CancellationToken cancellationToken)
+		{
 			var newAttribute = SyntaxFactory.Attribute(qualifiedName);
 			var newAttributeList = SyntaxFactory.AttributeList().AddAttributes(newAttribute).WithAdditionalAnnotations(Formatter.Annotation);
 			var newDeclaration = methodDeclaration.AddAttributeLists(newAttributeList);

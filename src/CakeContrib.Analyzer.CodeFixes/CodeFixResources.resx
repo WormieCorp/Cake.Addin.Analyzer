@@ -123,4 +123,7 @@
   <data name="AliasMethodMarkedTitle" xml:space="preserve">
     <value>Add Cake Method Alias attribute</value>
   </data>
+  <data name="AliasMethodPropertyMarkedTitle" xml:space="preserve">
+    <value>Add Cake Property Alias attribute</value>
+  </data>
 </root>

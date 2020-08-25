@@ -20,14 +20,29 @@ namespace CakeContrib.Analyzer.Tests.Rules
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasMethodMarkedRule)
 				.WithLocation(0).WithArguments("MyAwesomeAlias");
 
-			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest, nameof(Analyzer.CodeFixes.CodeFixResources.AliasMethodMarkedTitle));
+		}
+
+		[Category("Code Fix")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakePropertyAliasAliased, TestTemplates.AliasMethodMarked.HaveCakePropertyAliasAliased, TestName = "NotUsingPropertyAliasedShouldNotBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakePropertyAliasQualified, TestTemplates.AliasMethodMarked.HaveCakePropertyAliasQualified, TestName = "NotUsingPropertyQualifiedShouldNotBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakePropertyAliasSimplified, TestTemplates.AliasMethodMarked.HaveCakePropertyAliasSimplified, TestName = "NotUsingPropertySimplifiedShouldNotBeValid")]
+		public async Task ShouldApplyPropertyCodeFix(string test, string fixtest)
+		{
+			var expected = VerifyCS.Diagnostic(Identifiers.AliasMethodMarkedRule)
+				.WithLocation(0).WithArguments("MyAwesomeAlias");
+
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest, nameof(Analyzer.CodeFixes.CodeFixResources.AliasMethodPropertyMarkedTitle));
 		}
 
 		[Category("Analyzing")]
+		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasAliased, TestName = "UsingAliasedShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasQualified, TestName = "UsingQualifiedShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasSimplified, TestName = "UsingSimplifiedShouldBeValid")]
-		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakePropertyAliasAliased, TestName = "UsingAliasedPropertyShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakePropertyAliasQualified, TestName = "UsingQualifiedPropertyShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakePropertyAliasSimplified, TestName = "UsingSimplifiedPropertyShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.IsNotAAliasMethod, TestName = "NonAliasMethodShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.HaveContextButNotThis, TestName = "ContextWithoutThisKeywoardShouldBeValid")]
 		public async Task ShouldBeValid(string test)
