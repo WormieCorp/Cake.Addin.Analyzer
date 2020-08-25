@@ -4,6 +4,7 @@ namespace CakeContrib.Analyzer.Rules
 	using System.Collections.Immutable;
 	using System.Linq;
 	using Microsoft.CodeAnalysis;
+	using Microsoft.CodeAnalysis.CSharp.Syntax;
 	using Microsoft.CodeAnalysis.Diagnostics;
 
 	public abstract class BaseRule : DiagnosticAnalyzer
@@ -40,6 +41,24 @@ namespace CakeContrib.Analyzer.Rules
 		{
 			ConfigureContext(context);
 			RegisterActions(context);
+		}
+
+		protected static bool HasExpectedAttribute(SyntaxNodeAnalysisContext obj, AttributeSyntax attribute, string qualifiedTypeName)
+		{
+			var ti = obj.SemanticModel.GetTypeInfo(attribute);
+
+			var metaType = obj.SemanticModel.Compilation.GetTypeByMetadataName(qualifiedTypeName);
+
+			return ti.ConvertedType!.Equals(metaType, SymbolEqualityComparer.Default);
+		}
+
+		protected static bool HasExpectedParameter(SyntaxNodeAnalysisContext context, ParameterSyntax parameter, string qualifiedTypeName)
+		{
+			var ti = context.SemanticModel.GetTypeInfo(parameter.Type!);
+
+			var metaType = context.SemanticModel.Compilation.GetTypeByMetadataName(qualifiedTypeName);
+
+			return ti.ConvertedType!.Equals(metaType, SymbolEqualityComparer.Default);
 		}
 
 		protected void AddAdditionalRules(string id, string title, string description, string messageFormatName, string category, DiagnosticSeverity severity = DiagnosticSeverity.Warning, bool isEnabledByDefault = true, params string[] customTags)

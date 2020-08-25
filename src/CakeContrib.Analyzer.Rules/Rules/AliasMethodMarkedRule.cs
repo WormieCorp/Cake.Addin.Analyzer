@@ -35,37 +35,22 @@ namespace CakeContrib.Analyzer.Rules
 
 			var firstParameter = methodDecl.ParameterList.Parameters.FirstOrDefault();
 
-			if (firstParameter is null || !IsIContextType(obj, firstParameter) || !firstParameter.Modifiers.Any(SyntaxKind.ThisKeyword))
+			if (firstParameter is null ||
+				!HasExpectedParameter(obj, firstParameter, "Cake.Core.ICakeContext") ||
+				!firstParameter.Modifiers.Any(SyntaxKind.ThisKeyword))
 			{
 				return;
 			}
 
 			var attributes = methodDecl.AttributeLists.SelectMany(a => a.Attributes);
-			if (attributes.Any(a => HasExpectedAttribute(obj, a)))
+			if (attributes.Any(a =>
+				HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakeMethodAliasAttribute")))
 			{
 				return;
 			}
 
 			var diagnostic = Diagnostic.Create(Rule, methodDecl.Identifier.GetLocation(), methodDecl.Identifier.Text);
 			obj.ReportDiagnostic(diagnostic);
-		}
-
-		private bool HasExpectedAttribute(SyntaxNodeAnalysisContext obj, AttributeSyntax attribute)
-		{
-			var ti = obj.SemanticModel.GetTypeInfo(attribute);
-
-			var metaType = obj.SemanticModel.Compilation.GetTypeByMetadataName("Cake.Core.Annotations.CakeMethodAliasAttribute");
-
-			return ti.ConvertedType!.Equals(metaType, SymbolEqualityComparer.Default);
-		}
-
-		private bool IsIContextType(SyntaxNodeAnalysisContext obj, ParameterSyntax parameter)
-		{
-			var ti = obj.SemanticModel.GetTypeInfo(parameter.Type!);
-
-			var metaType = obj.SemanticModel.Compilation.GetTypeByMetadataName("Cake.Core.ICakeContext");
-
-			return ti.ConvertedType!.Equals(metaType, SymbolEqualityComparer.Default);
 		}
 	}
 }

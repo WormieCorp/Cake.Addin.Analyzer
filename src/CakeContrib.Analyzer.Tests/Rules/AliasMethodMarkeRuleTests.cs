@@ -15,7 +15,7 @@ namespace CakeContrib.Analyzer.Tests.Rules
 		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakeMethodAliasQualified, TestTemplates.AliasMethodMarked.HaveCakeMethodAliasQualified, TestName = "NotUsingQualifiedShouldNotBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakeMethodAliasSimplified, TestTemplates.AliasMethodMarked.HaveCakeMethodAliasSimplified, TestName = "NotUsingSimplifiedShouldNotBeValid")]
 		[TestCase(TestTemplates.Methods.DoNotHaveCakeAliasOnSingleCakeContextParameter, TestTemplates.AliasMethodMarked.HaveCakeAliasOnSingleCakeContextParameter, TestName = "ShouldFixWhenUsingSingleParameter")]
-		public async Task ShouldApplyCodeFix(string test, string fixtest)
+		public async Task ShouldApplyMethodCodeFix(string test, string fixtest)
 		{
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasMethodMarkedRule)
 				.WithLocation(0).WithArguments("MyAwesomeAlias");

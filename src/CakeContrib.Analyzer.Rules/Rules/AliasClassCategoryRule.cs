@@ -43,7 +43,7 @@ namespace CakeContrib.Analyzer.Rules
 			if (classDeclaration.AttributeLists.Any())
 			{
 				var attributes = classDeclaration.AttributeLists.SelectMany(al => al.Attributes);
-				if (attributes.Any(a => IsQualifiedName(obj, a)))
+				if (attributes.Any(a => HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakeAliasCategoryAttribute")))
 				{
 					return;
 				}
@@ -51,19 +51,6 @@ namespace CakeContrib.Analyzer.Rules
 
 			var diagnostic = Diagnostic.Create(Rule, identifier.GetLocation(), identifierText);
 			obj.ReportDiagnostic(diagnostic);
-		}
-
-		private bool IsQualifiedName(SyntaxNodeAnalysisContext obj, AttributeSyntax attribute)
-		{
-			var ti = obj.SemanticModel.GetTypeInfo(attribute);
-			if (ti.ConvertedType is null)
-			{
-				return false;
-			}
-
-			var metaType = obj.SemanticModel.Compilation.GetTypeByMetadataName("Cake.Core.Annotations.CakeAliasCategoryAttribute");
-
-			return ti.ConvertedType.Equals(metaType, SymbolEqualityComparer.Default);
 		}
 	}
 }
