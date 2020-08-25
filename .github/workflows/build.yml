@@ -10,6 +10,9 @@ jobs:
         os: [windows-latest, ubuntu-latest]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GPR_SOURCE: "https://nuget.pkg.github.com/AdmiringWorm/index.json"
+      GPR_USER: "github-actions"
+      GPR_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2.2.0
