@@ -6,6 +6,7 @@
 		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>CakeContrib.Analyzer.Vsix</RootNamespace>
 		<AssemblyName>CakeContrib.Analyzer.Vsix</AssemblyName>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<PropertyGroup>

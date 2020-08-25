@@ -4,26 +4,31 @@
 Environment.SetVariableNames();
 
 BuildParameters.SetParameters(
-	context: Context,
 	buildSystem: BuildSystem,
-	sourceDirectoryPath: "./src",
-	solutionFilePath: "./src/CakeContrib.Analyzer_core.sln",
-	title: "CakeContrib.Analyzer",
-	repositoryOwner: "AdmiringWorm",
+	context: Context,
+	nugetConfig: "./src/NuGet.Config",
+	preferredBuildAgentOperatingSystem: PlatformFamily.Windows,
+	preferredBuildProviderType: BuildProviderType.GitHubActions,
 	repositoryName: "CakeContrib.Analyzer",
-	//shouldRunDupFinder: false,
+	repositoryOwner: "AdmiringWorm",
+	shouldRunCodecov: true,
+	shouldRunCoveralls: false,
+	shouldRunDotNetCorePack: true,
 	shouldRunInspectCode: false, // Too many false flags
 	shouldUseDeterministicBuilds: true,
 	shouldUseTargetFrameworkPath: false,
-	shouldRunCodecov: true,
-	nugetConfig: "./src/NuGet.Config");
+	solutionFilePath: "./src/CakeContrib.Analyzer_core.sln",
+	sourceDirectoryPath: "./src",
+	title: "CakeContrib.Analyzer"
+);
 
 BuildParameters.PrintParameters(Context);
 
 ToolSettings.SetToolSettings(
 	context: Context,
 	testCoverageExcludeByFile: "**/*Designer.cs;**/*.g.cs;**/*.g.i.cs",
-	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*");
+	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*"
+);
 
 Task("Transform-Text-Templates")
 	.IsDependeeOf("DotNetCore-Build")
