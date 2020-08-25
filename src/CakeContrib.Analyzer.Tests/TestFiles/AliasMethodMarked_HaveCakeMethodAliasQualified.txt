@@ -1,4 +1,4 @@
-namespace Cake.Addin
+namespace CakeTest.Addin
 {
     public static class CakeAddinAlias
     {
