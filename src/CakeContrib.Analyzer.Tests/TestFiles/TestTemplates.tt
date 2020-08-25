@@ -25,7 +25,7 @@ namespace CakeContrib.Analyzer.Tests
 			var filename = Path.GetFileNameWithoutExtension(file);
 			var content = File.ReadAllText(file, Encoding.UTF8);
 #>
-		public const string <#= filename.Replace(".","_") #> = @"<#= content.Replace("\"", "\"\"") #>";
+		public const string <#= filename.Replace(".","_") #> = "<#= content.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n") #>";
 <#
 		}
 #>
@@ -45,7 +45,7 @@ namespace CakeContrib.Analyzer.Tests
 				var filename = Path.GetFileNameWithoutExtension(file);
 				var content = File.ReadAllText(file, Encoding.UTF8);
 #>
-			public const string <#= filename.Replace(".","_") #> = @"<#= content.Replace("\"", "\"\"") #>";
+			public const string <#= filename.Replace(".","_") #> = "<#= content.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n") #>";
 <#
 			}
 #>

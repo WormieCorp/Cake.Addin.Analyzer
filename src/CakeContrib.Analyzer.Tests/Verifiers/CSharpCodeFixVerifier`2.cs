@@ -47,11 +47,11 @@ namespace CakeContrib.Analyzer.Test
 			=> await VerifyCodeFixAsync(source, DiagnosticResult.EmptyDiagnosticResults, fixedSource);
 
 		/// <inheritdoc cref="CodeFixVerifier{TAnalyzer, TCodeFix, TTest, TVerifier}.VerifyCodeFixAsync(string, DiagnosticResult, string)"/>
-		public static async Task VerifyCodeFixAsync(string source, DiagnosticResult expected, string fixedSource)
-			=> await VerifyCodeFixAsync(source, new[] { expected }, fixedSource);
+		public static async Task VerifyCodeFixAsync(string source, DiagnosticResult expected, string fixedSource, string codefixEquivalenceKey = null)
+			=> await VerifyCodeFixAsync(source, new[] { expected }, fixedSource, codefixEquivalenceKey);
 
 		/// <inheritdoc cref="CodeFixVerifier{TAnalyzer, TCodeFix, TTest, TVerifier}.VerifyCodeFixAsync(string, DiagnosticResult[], string)"/>
-		public static async Task VerifyCodeFixAsync(string source, DiagnosticResult[] expected, string fixedSource)
+		public static async Task VerifyCodeFixAsync(string source, DiagnosticResult[] expected, string fixedSource, string codefixEquivalenceKey = null)
 		{
 			var test = new Test {
 				TestCode = source,
@@ -62,6 +62,11 @@ namespace CakeContrib.Analyzer.Test
 							new PackageIdentity("Cake.Core", "0.38.4"),
 							new PackageIdentity("Cake.Common", "0.38.4"))),
 			};
+
+			if (!string.IsNullOrEmpty(codefixEquivalenceKey))
+			{
+				test.CodeActionEquivalenceKey = codefixEquivalenceKey;
+			}
 
 			test.ExpectedDiagnostics.AddRange(expected);
 			await test.RunAsync(CancellationToken.None);
