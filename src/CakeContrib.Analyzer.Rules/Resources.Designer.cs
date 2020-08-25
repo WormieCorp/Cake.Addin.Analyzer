@@ -88,7 +88,7 @@ namespace CakeContrib.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace with description.
+        ///   Looks up a localized string similar to Cake method aliases needs to be marked with either a CakeMethodAlias or a CakePropertyAlias to be correctly identified and imported by the cake runner..
         /// </summary>
         internal static string MethodMarkedDescription {
             get {
@@ -97,7 +97,7 @@ namespace CakeContrib.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace with message format.
+        ///   Looks up a localized string similar to The method {0} have not been marked with either a CakeMethodAlias or CakePropertyAlias to identify as an cake alias..
         /// </summary>
         internal static string MethodMarkedMessageFormat {
             get {
@@ -106,7 +106,7 @@ namespace CakeContrib.Analyzer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace with title.
+        ///   Looks up a localized string similar to Missing attribute to mark method as an alias..
         /// </summary>
         internal static string MethodMarkedTitle {
             get {

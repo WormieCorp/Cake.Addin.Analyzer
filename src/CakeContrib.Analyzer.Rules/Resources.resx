@@ -127,12 +127,12 @@
     <value>Missing Cake Alias Category</value>
   </data>
   <data name="MethodMarkedDescription" xml:space="preserve">
-    <value>Replace with description</value>
+    <value>Cake method aliases needs to be marked with either a CakeMethodAlias or a CakePropertyAlias to be correctly identified and imported by the cake runner.</value>
   </data>
   <data name="MethodMarkedMessageFormat" xml:space="preserve">
-    <value>Replace with message format</value>
+    <value>The method {0} have not been marked with either a CakeMethodAlias or CakePropertyAlias to identify as an cake alias.</value>
   </data>
   <data name="MethodMarkedTitle" xml:space="preserve">
-    <value>Replace with title</value>
+    <value>Missing attribute to mark method as an alias.</value>
   </data>
 </root>
