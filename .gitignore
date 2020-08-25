@@ -362,3 +362,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 BuildArtifacts/
+
+# Generated C# files
+*.g.cs

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets')" />
 	<PropertyGroup>
 		<!-- We can only run .NET 4.6.1 on windows, due to mono having some required classes being inaccessible -->
 		<!-- https://github.com/AdmiringWorm/CakeContrib.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
@@ -9,7 +9,20 @@
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
 		<LangVersion>8.0</LangVersion>
+		<TransformOnBuild>true</TransformOnBuild>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<T4ReferencePath Include="$(VsIdePath)PublicAssemblies\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="TestFiles\TestTemplates.g.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TestTemplates.tt</DependentUpon>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Appveyor.TestLogger" Version="2.0.0" />
@@ -43,4 +56,22 @@
 		<ProjectReference Include="..\CakeContrib.Analyzer.Rules\CakeContrib.Analyzer.Rules.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="TestFiles\TestTemplates.g.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TestTemplates.tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="TestFiles\TestTemplates.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>TestTemplates.g.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 </Project>

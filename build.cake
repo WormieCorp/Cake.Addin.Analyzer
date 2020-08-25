@@ -24,4 +24,26 @@ ToolSettings.SetToolSettings(
 	testCoverageExcludeByFile: "**/*Designer.cs;**/*.g.cs;**/*.g.i.cs",
 	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*");
 
+Task("Transform-Text-Templates")
+	.IsDependeeOf("DotNetCore-Build")
+	.Does(() =>
+{
+	var ttFile = File("./src/CakeContrib.Analyzer.Tests/TestFiles/TestTemplates.tt");
+	var outputFile = File("./src/CakeContrib.Analyzer.Tests/TestFiles/TestTemplates");
+
+	var exitCode = StartProcess("dotnet",
+		new ProcessSettings {
+			Arguments = new ProcessArgumentBuilder()
+				.Append("t4")
+				.AppendSwitchQuoted("--out","=", outputFile.ToString())
+				.AppendQuoted(ttFile.ToString())
+		});
+
+	if (exitCode != 0)
+	{
+		throw new Exception("Text Template transformation failed");
+	}
+});
+
+
 Build.RunDotNetCore();

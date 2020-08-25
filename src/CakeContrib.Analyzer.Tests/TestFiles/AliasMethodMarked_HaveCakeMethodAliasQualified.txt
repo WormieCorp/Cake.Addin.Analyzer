@@ -1,0 +1,12 @@
+namespace Cake.Addin
+{
+    [Cake.Core.Annotations.CakeAliasCategory("REPLACE_ME")]
+    public static class CakeAddinAlias
+    {
+        [Cake.Core.Annotations.CakeMethodAlias]
+        public static void MyAwesomeAlias(this Cake.Core.ICakeContext context, string something)
+        {
+            something = something;
+        }
+    }
+}

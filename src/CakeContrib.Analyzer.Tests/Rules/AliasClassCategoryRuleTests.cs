@@ -2,6 +2,7 @@ namespace CakeContrib.Analyzer.Test.Rules
 {
 	using System.Threading.Tasks;
 	using CakeContrib.Analyzer.Constants;
+	using CakeContrib.Analyzer.Tests;
 	using NUnit.Framework;
 	using VerifyCS = CSharpCodeFixVerifier<
 		Analyzer.Rules.AliasClassCategoryRule,
@@ -9,117 +10,23 @@ namespace CakeContrib.Analyzer.Test.Rules
 
 	public class AliasClassCategoryRuleTests
 	{
-		[Test]
-		public async Task ShouldBeValidWhenAttributeIsUsedAsShortName()
+		[Category("Code Fix")]
+		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategoryAliased, TestTemplates.AliasClassCategory_HaveCakeAliasCategoryAliased, TestName = "ShouldFixToAliasedNameWhenReferenced")]
+		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategoryQualified, TestTemplates.AliasClassCategory_HaveCakeAliasCategoryQualified, TestName = "ShouldFixToQualifiedNameWhenNoReference")]
+		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategorySimplified, TestTemplates.AliasClassCategory_HaveCakeAliasCategorySimplified, TestName = "ShouldFixToSimplifiedNameWhenReferenced")]
+		public async Task ShouldApplyCodeFix(string test, string fix)
 		{
-			var test = @"
-using Cake.Core.Annotations;
-
-namespace CakeAddin
-{
-	[CakeAliasCategory(""SomeCategory"")]
-	public static class CakeAddinAliases
-	{
-	}
-}";
-			await VerifyCS.VerifyAnalyzerAsync(test);
-		}
-
-		[Test]
-		public async Task ShouldBeValidWhenAttributeIsUsedFullyQualified()
-		{
-			var test = @"
-namespace CakeAddin
-{
-	[Cake.Core.Annotations.CakeAliasCategory(""SomeCategory"")]
-	public static class CakeAddinAliases
-	{
-	}
-}";
-			await VerifyCS.VerifyAnalyzerAsync(test);
-		}
-
-		[Test]
-		public async Task ShouldBeValidWhenAttributeIsUsedWithUsingAlias()
-		{
-			var test = @"
-using Category = Cake.Core.Annotations.CakeAliasCategoryAttribute;
-
-namespace CakeAddin
-{
-	[Category(""SomeCategory"")]
-	public static class CakeAddinAliases
-	{
-	}
-}";
-
-			await VerifyCS.VerifyAnalyzerAsync(test);
-		}
-
-		[Test]
-		public async Task ShouldNotTriggerDiagnosticOnNonAliasClass()
-		{
-			var test = @"
-namespace CakeAddin
-{
-	public class TestClass1
-	{
-	}
-}";
-
-			await VerifyCS.VerifyAnalyzerAsync(test);
-		}
-
-		[Test]
-		public async Task ShouldReportAndFixWarningWhenNoCategoryAttributeIsUsedWithShortName()
-		{
-			var test = @"
-using Cake.Core.Annotations;
-
-namespace CakeAddin
-{
-    public static class {|#0:CakeAddinAliases|}
-    {
-    }
-}";
-			var fixtest = @"
-using Cake.Core.Annotations;
-
-namespace CakeAddin
-{
-    [CakeAliasCategory(""REPLACE_ME"")]
-    public static class CakeAddinAliases
-    {
-    }
-}";
-
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
 				.WithLocation(0).WithArguments("CakeAddinAliases");
-			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+			await VerifyCS.VerifyCodeFixAsync(test, expected, fix);
 		}
 
-		[Test]
-		public async Task ShouldReportWarningWhenNoCategoryAttributeIsUsedAnAliasClass()
-		{
-			var test = @"
-namespace CakeAddin
-{
-    public static class {|#0:CakeAddinAliases|}
-    {
-    }
-}";
-			var fixtest = @"
-namespace CakeAddin
-{
-    [Cake.Core.Annotations.CakeAliasCategory(""REPLACE_ME"")]
-    public static class CakeAddinAliases
-    {
-    }
-}";
-
-			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
-				.WithLocation(0).WithArguments("CakeAddinAliases");
-			await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
-		}
+		[Category("Analyzing")]
+		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategoryAliased, TestName = "UsingAliasShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategoryQualified, TestName = "UsingQualifiedShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategorySimplified, TestName = "UsingSimplifiedShouldBeValid")]
+		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
+		public async Task ShouldBeValid(string test)
+			=> await VerifyCS.VerifyAnalyzerAsync(test);
 	}
 }

@@ -1,1 +1,2 @@
 *.cs text whitespace=-indent-with-non-tab
+*.txt text whitespace=-indent-with-non-tab,tab-in-indent

@@ -1,0 +1,6 @@
+namespace CakeAddin
+{
+    public static class {|#0:CakeAddinAliases|}
+    {
+    }
+}
