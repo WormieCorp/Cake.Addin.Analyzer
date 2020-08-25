@@ -1,6 +1,5 @@
 namespace CakeContrib.Analyzer.CodeFixes
 {
-	using System;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -22,14 +21,9 @@ namespace CakeContrib.Analyzer.CodeFixes
 
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
-			var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false) ?? throw new ApplicationException("Unexpected null root was found");
-
 			var diagnostic = context.Diagnostics.First();
-			var diagnosticSpan = diagnostic.Location.SourceSpan;
 
-			var parentToken = root.FindToken(diagnosticSpan.Start).Parent ?? throw new ApplicationException("No parent was found for the current diagnostic token!");
-
-			var declaration = parentToken.AncestorsAndSelf().OfType<MethodDeclarationSyntax>().First();
+			var declaration = await FindDeclarationAsync<MethodDeclarationSyntax>(context, diagnostic).ConfigureAwait(false);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
@@ -48,11 +42,7 @@ namespace CakeContrib.Analyzer.CodeFixes
 			var newDeclaration = methodDeclaration.AddAttributeLists(newAttributeList);
 
 			var oldRoot = await document.GetSyntaxRootAsync(cancellationToken);
-			if (oldRoot is null)
-			{
-				return document;
-			}
-			var newRoot = oldRoot.ReplaceNode(methodDeclaration, newDeclaration);
+			var newRoot = oldRoot!.ReplaceNode(methodDeclaration, newDeclaration);
 
 			return document.WithSyntaxRoot(newRoot);
 		}

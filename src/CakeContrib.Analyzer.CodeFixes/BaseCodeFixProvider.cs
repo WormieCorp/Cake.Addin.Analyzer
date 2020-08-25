@@ -2,6 +2,8 @@ namespace CakeContrib.Analyzer.CodeFixes
 {
 	using System;
 	using System.Collections.Immutable;
+	using System.Linq;
+	using System.Threading.Tasks;
 	using Microsoft.CodeAnalysis;
 	using Microsoft.CodeAnalysis.CodeFixes;
 	using Microsoft.CodeAnalysis.CSharp;
@@ -51,6 +53,19 @@ namespace CakeContrib.Analyzer.CodeFixes
 #pragma warning disable CS8603 // Possible null reference return.
 			return qualifiedName;
 #pragma warning restore CS8603 // Possible null reference return.
+		}
+
+		protected static async Task<TDeclaration> FindDeclarationAsync<TDeclaration>(CodeFixContext context, Diagnostic diagnostic)
+					where TDeclaration : SyntaxNode
+		{
+			var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false) ?? throw new ApplicationException("Unexpected null root was found");
+			var diagnosticSpan = diagnostic.Location.SourceSpan;
+
+			var parentToken = root.FindToken(diagnosticSpan.Start).Parent ?? throw new ApplicationException("No parent was found for the current diagnostic token!");
+
+			var declaration = parentToken.AncestorsAndSelf().OfType<TDeclaration>().First();
+
+			return declaration;
 		}
 	}
 }
