@@ -68,5 +68,14 @@ namespace CakeContrib.Analyzer.CodeFixes {
                 return ResourceManager.GetString("AliasClassCategoryTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Cake Method Alias attribute.
+        /// </summary>
+        internal static string AliasMethodMarkedTitle {
+            get {
+                return ResourceManager.GetString("AliasMethodMarkedTitle", resourceCulture);
+            }
+        }
     }
 }

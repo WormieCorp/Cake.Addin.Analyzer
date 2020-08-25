@@ -120,4 +120,7 @@
   <data name="AliasClassCategoryTitle" xml:space="preserve">
     <value>Add Cake Alias Category attribute</value>
   </data>
+  <data name="AliasMethodMarkedTitle" xml:space="preserve">
+    <value>Add Cake Method Alias attribute</value>
+  </data>
 </root>
