@@ -11,10 +11,10 @@ namespace CakeContrib.Analyzer.Tests.Rules
 	public class AliasMethodMarkeRuleTests
 	{
 		[Category("Code Fix")]
-		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasAliased, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasAliased, TestName = "NotUsingAliasedShouldNotBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasQualified, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasQualified, TestName = "NotUsingQualifiedShouldNotBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasSimplified, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasSimplified, TestName = "NotUsingSimplifiedShouldNotBeValid")]
-		[TestCase(TestTemplates.Method_DoNotHaveCakeAliasOnSingleCakeContextParameter, TestTemplates.AliasMethodMarked_HaveCakeAliasOnSingleCakeContextParameter, TestName = "ShouldFixWhenUsingSingleParameter")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakeMethodAliasAliased, TestTemplates.AliasMethodMarked.HaveCakeMethodAliasAliased, TestName = "NotUsingAliasedShouldNotBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakeMethodAliasQualified, TestTemplates.AliasMethodMarked.HaveCakeMethodAliasQualified, TestName = "NotUsingQualifiedShouldNotBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.DoNotHaveCakeMethodAliasSimplified, TestTemplates.AliasMethodMarked.HaveCakeMethodAliasSimplified, TestName = "NotUsingSimplifiedShouldNotBeValid")]
+		[TestCase(TestTemplates.Methods.DoNotHaveCakeAliasOnSingleCakeContextParameter, TestTemplates.AliasMethodMarked.HaveCakeAliasOnSingleCakeContextParameter, TestName = "ShouldFixWhenUsingSingleParameter")]
 		public async Task ShouldApplyCodeFix(string test, string fixtest)
 		{
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasMethodMarkedRule)
@@ -24,12 +24,12 @@ namespace CakeContrib.Analyzer.Tests.Rules
 		}
 
 		[Category("Analyzing")]
-		[TestCase(TestTemplates.AliasMethodMarked_HaveCakeMethodAliasAliased, TestName = "UsingAliasedShouldBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_HaveCakeMethodAliasQualified, TestName = "UsingQualifiedShouldBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_HaveCakeMethodAliasSimplified, TestName = "UsingSimplifiedShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasAliased, TestName = "UsingAliasedShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasQualified, TestName = "UsingQualifiedShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveCakeMethodAliasSimplified, TestName = "UsingSimplifiedShouldBeValid")]
 		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_IsNotAAliasMethod, TestName = "NonAliasMethodShouldBeValid")]
-		[TestCase(TestTemplates.AliasMethodMarked_HaveContextButNotThis, TestName = "ContextWithoutThisKeywoardShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.IsNotAAliasMethod, TestName = "NonAliasMethodShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveContextButNotThis, TestName = "ContextWithoutThisKeywoardShouldBeValid")]
 		public async Task ShouldBeValid(string test)
 			=> await VerifyCS.VerifyAnalyzerAsync(test);
 

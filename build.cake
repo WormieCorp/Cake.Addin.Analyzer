@@ -29,16 +29,22 @@ Task("Transform-Text-Templates")
 	.IsDependeeOf("DotNetCore-Build")
 	.Does(() =>
 {
-	var ttFile = File("./src/CakeContrib.Analyzer.Tests/TestFiles/TestTemplates.tt");
-	var outputFile = File("./src/CakeContrib.Analyzer.Tests/TestFiles/TestTemplates");
+	var ttFiles = GetFiles("src/**/*.tt");
 
-	var exitCode = StartProcess("dotnet",
-		new ProcessSettings {
-			Arguments = new ProcessArgumentBuilder()
-				.Append("t4")
-				.AppendSwitchQuoted("--out","=", outputFile.ToString())
-				.AppendQuoted(ttFile.ToString())
-		});
+	int exitCode = 0;
+
+	foreach (var file in ttFiles)
+	{
+		Information("Transforming Text Template: '{0}'", file.GetFilename());
+		int newexitcode = StartProcess("dotnet",
+			new ProcessSettings {
+				Arguments = new ProcessArgumentBuilder()
+					.Append("t4")
+					.AppendQuoted(file.ToString())
+			});
+		if (exitCode == 0)
+			exitCode = newexitcode;
+	}
 
 	if (exitCode != 0)
 	{

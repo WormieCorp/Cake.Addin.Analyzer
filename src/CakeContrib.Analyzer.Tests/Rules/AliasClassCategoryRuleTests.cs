@@ -11,9 +11,9 @@ namespace CakeContrib.Analyzer.Test.Rules
 	public class AliasClassCategoryRuleTests
 	{
 		[Category("Code Fix")]
-		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategoryAliased, TestTemplates.AliasClassCategory_HaveCakeAliasCategoryAliased, TestName = "ShouldFixToAliasedNameWhenReferenced")]
-		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategoryQualified, TestTemplates.AliasClassCategory_HaveCakeAliasCategoryQualified, TestName = "ShouldFixToQualifiedNameWhenNoReference")]
-		[TestCase(TestTemplates.AliasClassCategory_DoNotHaveCakeAliasCategorySimplified, TestTemplates.AliasClassCategory_HaveCakeAliasCategorySimplified, TestName = "ShouldFixToSimplifiedNameWhenReferenced")]
+		[TestCase(TestTemplates.AliasClassCategory.DoNotHaveCakeAliasCategoryAliased, TestTemplates.AliasClassCategory.HaveCakeAliasCategoryAliased, TestName = "ShouldFixToAliasedNameWhenReferenced")]
+		[TestCase(TestTemplates.AliasClassCategory.DoNotHaveCakeAliasCategoryQualified, TestTemplates.AliasClassCategory.HaveCakeAliasCategoryQualified, TestName = "ShouldFixToQualifiedNameWhenNoReference")]
+		[TestCase(TestTemplates.AliasClassCategory.DoNotHaveCakeAliasCategorySimplified, TestTemplates.AliasClassCategory.HaveCakeAliasCategorySimplified, TestName = "ShouldFixToSimplifiedNameWhenReferenced")]
 		public async Task ShouldApplyCodeFix(string test, string fix)
 		{
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
@@ -22,9 +22,9 @@ namespace CakeContrib.Analyzer.Test.Rules
 		}
 
 		[Category("Analyzing")]
-		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategoryAliased, TestName = "UsingAliasShouldBeValid")]
-		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategoryQualified, TestName = "UsingQualifiedShouldBeValid")]
-		[TestCase(TestTemplates.AliasClassCategory_HaveCakeAliasCategorySimplified, TestName = "UsingSimplifiedShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategoryAliased, TestName = "UsingAliasShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategoryQualified, TestName = "UsingQualifiedShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategorySimplified, TestName = "UsingSimplifiedShouldBeValid")]
 		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
 		public async Task ShouldBeValid(string test)
 			=> await VerifyCS.VerifyAnalyzerAsync(test);
