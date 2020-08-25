@@ -3,7 +3,6 @@ using Cake.Core.Annotations;
 
 namespace Cake.Addin
 {
-    [CakeAliasCategory("SOME_CATEGORY")]
     public static class CakeAddinAlias
     {
         public static void NotAnAlias(string something)

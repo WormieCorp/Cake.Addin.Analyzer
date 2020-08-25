@@ -1,11 +1,8 @@
-using Cake.Core;
-using Cake.Core.Annotations;
-
 namespace Cake.Addin
 {
     public static class CakeAddinAlias
     {
-        public static void MyAwesomeAlias(ICakeContext context, string something)
+        public static void {|#0:MyAwesomeAlias|}(this Cake.Core.ICakeContext context, string something)
         {
             something = something;
         }

@@ -86,5 +86,32 @@ namespace CakeContrib.Analyzer {
                 return ResourceManager.GetString("AliasClassCategoryTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with description.
+        /// </summary>
+        internal static string MethodMarkedDescription {
+            get {
+                return ResourceManager.GetString("MethodMarkedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with message format.
+        /// </summary>
+        internal static string MethodMarkedMessageFormat {
+            get {
+                return ResourceManager.GetString("MethodMarkedMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with title.
+        /// </summary>
+        internal static string MethodMarkedTitle {
+            get {
+                return ResourceManager.GetString("MethodMarkedTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -126,4 +126,13 @@
   <data name="AliasClassCategoryTitle" xml:space="preserve">
     <value>Missing Cake Alias Category</value>
   </data>
+  <data name="MethodMarkedDescription" xml:space="preserve">
+    <value>Replace with description</value>
+  </data>
+  <data name="MethodMarkedMessageFormat" xml:space="preserve">
+    <value>Replace with message format</value>
+  </data>
+  <data name="MethodMarkedTitle" xml:space="preserve">
+    <value>Replace with title</value>
+  </data>
 </root>
