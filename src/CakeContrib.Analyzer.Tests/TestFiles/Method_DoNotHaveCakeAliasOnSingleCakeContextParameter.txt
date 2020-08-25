@@ -1,0 +1,9 @@
+namespace CakeTest.Addin
+{
+    public static class CakeAddinAlias
+    {
+        public static void {|#0:MyAwesomeAlias|}(this Cake.Core.ICakeContext context)
+        {
+        }
+    }
+}

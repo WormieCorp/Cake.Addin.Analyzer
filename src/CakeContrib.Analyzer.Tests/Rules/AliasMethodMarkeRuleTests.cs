@@ -10,19 +10,12 @@ namespace CakeContrib.Analyzer.Tests.Rules
 
 	public class AliasMethodMarkeRuleTests
 	{
-		/*[Category("Code Fix")]
-		public async Task ShouldApplyCodeFix(string test, string fix)
-		{
-			var expected = VerifyCS.Diagnostic(Identifiers.AliasClassCategoryRule)
-				.WithLocation(0).WithArguments("CakeAddinAliases");
-			await VerifyCS.VerifyCodeFixAsync(test, expected, fix);
-		}*/
-
-		[Category("Analyzing")]
+		[Category("Code Fix")]
 		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasAliased, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasAliased, TestName = "NotUsingAliasedShouldNotBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasQualified, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasQualified, TestName = "NotUsingQualifiedShouldNotBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked_DoNotHaveCakeMethodAliasSimplified, TestTemplates.AliasMethodMarked_HaveCakeMethodAliasSimplified, TestName = "NotUsingSimplifiedShouldNotBeValid")]
-		public async Task ShouldBeCorrectlyFixed(string test, string fixtest)
+		[TestCase(TestTemplates.Method_DoNotHaveCakeAliasOnSingleCakeContextParameter, TestTemplates.AliasMethodMarked_HaveCakeAliasOnSingleCakeContextParameter, TestName = "ShouldFixWhenUsingSingleParameter")]
+		public async Task ShouldApplyCodeFix(string test, string fixtest)
 		{
 			var expected = VerifyCS.Diagnostic(Identifiers.AliasMethodMarkedRule)
 				.WithLocation(0).WithArguments("MyAwesomeAlias");
