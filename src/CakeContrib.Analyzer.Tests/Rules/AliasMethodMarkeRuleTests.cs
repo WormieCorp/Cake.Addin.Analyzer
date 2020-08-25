@@ -6,7 +6,7 @@ namespace CakeContrib.Analyzer.Tests.Rules
 	using NUnit.Framework;
 	using VerifyCS = Test.CSharpCodeFixVerifier<
 		Analyzer.Rules.AliasMethodMarkedRule,
-		CodeFixes.AliasMethodMarkedCodeFixProvider>;
+		Analyzer.CodeFixes.AliasMethodMarkedCodeFixProvider>;
 
 	public class AliasMethodMarkeRuleTests
 	{

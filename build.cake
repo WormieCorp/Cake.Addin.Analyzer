@@ -12,6 +12,7 @@ BuildParameters.SetParameters(
 	repositoryOwner: "AdmiringWorm",
 	repositoryName: "CakeContrib.Analyzer",
 	//shouldRunDupFinder: false,
+	shouldRunInspectCode: false, // Too many false flags
 	shouldUseDeterministicBuilds: true,
 	shouldUseTargetFrameworkPath: false,
 	shouldRunCodecov: true,
