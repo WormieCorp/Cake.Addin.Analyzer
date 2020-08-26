@@ -17,7 +17,8 @@ namespace CakeContrib.Analyzer.Rules
 				  nameof(Resources.MethodMarkedDescription),
 				  nameof(Resources.MethodMarkedMessageFormat),
 				  Categories.Usage,
-				  severity: DiagnosticSeverity.Error)
+				  severity: DiagnosticSeverity.Error,
+				  customTags: "Cake Build")
 		{
 		}
 
