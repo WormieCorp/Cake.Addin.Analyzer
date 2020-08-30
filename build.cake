@@ -9,17 +9,18 @@ BuildParameters.SetParameters(
 	nugetConfig: "./src/NuGet.Config",
 	preferredBuildAgentOperatingSystem: PlatformFamily.Windows,
 	preferredBuildProviderType: BuildProviderType.GitHubActions,
-	repositoryName: "CakeContrib.Analyzer",
+	repositoryName: "Cake.Addin.Analyzer",
 	repositoryOwner: "AdmiringWorm",
 	shouldRunCodecov: true,
 	shouldRunCoveralls: false,
 	shouldRunDotNetCorePack: true,
+	shouldRunDupFinder: false,
 	shouldRunInspectCode: false, // Too many false flags
 	shouldUseDeterministicBuilds: true,
 	shouldUseTargetFrameworkPath: false,
-	solutionFilePath: "./src/CakeContrib.Analyzer_core.sln",
+	solutionFilePath: "./src/Cake.Addin.Analyzer_core.sln",
 	sourceDirectoryPath: "./src",
-	title: "CakeContrib.Analyzer"
+	title: "Cake Addin Analyzer"
 );
 
 BuildParameters.PrintParameters(Context);

@@ -10,9 +10,9 @@
 			"request": "launch",
 			"preLaunchTask": "build",
 			// If you have changed target frameworks, make sure to update the program path.
-			"program": "${workspaceFolder}/src/CakeContrib.Analyzer.Test/bin/Debug/netcoreapp2.0/CakeContrib.Analyzer.Test.dll",
+			"program": "${workspaceFolder}/src/Cake.Addin.Analyzer.Test/bin/Debug/netcoreapp2.0/Cake.Addin.Analyzer.Test.dll",
 			"args": [],
-			"cwd": "${workspaceFolder}/src/CakeContrib.Analyzer.Test",
+			"cwd": "${workspaceFolder}/src/Cake.Addin.Analyzer.Test",
 			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
 			"console": "internalConsole",
 			"stopAtEntry": false

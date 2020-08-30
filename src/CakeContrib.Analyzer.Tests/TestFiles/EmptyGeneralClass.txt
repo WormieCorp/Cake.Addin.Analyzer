@@ -1,6 +1,0 @@
-namespace CakeAddin
-{
-    public class TestClass1
-    {
-    }
-}
