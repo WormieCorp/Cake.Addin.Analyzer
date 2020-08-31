@@ -13,6 +13,7 @@ jobs:
       GPR_SOURCE: "https://nuget.pkg.github.com/AdmiringWorm/index.json"
       GPR_USER: "github-actions"
       GPR_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      NUGET_SOURCE:  "https://api.nuget.org/v3/index.json"
 
     steps:
       - uses: actions/checkout@v2.2.0
