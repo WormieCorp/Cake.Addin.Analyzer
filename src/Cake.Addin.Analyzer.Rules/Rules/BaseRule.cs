@@ -90,7 +90,7 @@ namespace Cake.Addin.Analyzer.Rules
 				severity,
 				isEnabledByDefault,
 				description: description,
-				helpLinkUri: $"https://github.com/AdmiringWorm/Cake.Addin.Analyzer/wiki/Rules-{id}",
+				helpLinkUri: $"https://wormiecorp.github.io/Cake.Addin.Analyzer/rules/{id.ToLowerInvariant()}",
 				customTags: customTags);
 			return rule;
 		}

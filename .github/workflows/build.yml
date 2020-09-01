@@ -14,6 +14,9 @@ jobs:
       FEEDZ_API_KEY: ${{ secrets.FEEDZ_API_KEY }}
       NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      WYAM_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WYAM_DEPLOY_REMOTE: "https://github.com/WormieCorp/Cake.Addin.Analyzer"
+      WYAM_DEPLOY_BRANCH: "gh-pages"
 
     steps:
       - uses: actions/checkout@v2.2.0

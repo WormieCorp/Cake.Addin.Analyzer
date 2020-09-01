@@ -10,7 +10,7 @@ BuildParameters.SetParameters(
 	preferredBuildAgentOperatingSystem: PlatformFamily.Windows,
 	preferredBuildProviderType: BuildProviderType.GitHubActions,
 	repositoryName: "Cake.Addin.Analyzer",
-	repositoryOwner: "AdmiringWorm",
+	repositoryOwner: "WormieCorp",
 	shouldRunCodecov: !EnvironmentVariable("SKIP_CODECOV", false),
 	shouldRunCoveralls: false,
 	shouldRunDotNetCorePack: true,
@@ -20,7 +20,7 @@ BuildParameters.SetParameters(
 	shouldUseTargetFrameworkPath: false,
 	solutionFilePath: "./src/Cake.Addin.Analyzer_core.sln",
 	sourceDirectoryPath: "./src",
-	title: "Cake Addin Analyzer"
+	title: "Cake.Addin.Analyzer"
 );
 
 var feedzUrl = EnvironmentVariable("FEEDZ_SOURCE");

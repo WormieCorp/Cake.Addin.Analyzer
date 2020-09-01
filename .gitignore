@@ -365,3 +365,6 @@ BuildArtifacts/
 
 # Generated C# files
 *.g.cs
+
+*.dll
+*.hash
