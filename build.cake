@@ -7,7 +7,7 @@ BuildParameters.SetParameters(
 	buildSystem: BuildSystem,
 	context: Context,
 	nugetConfig: "./src/NuGet.Config",
-	preferredBuildAgentOperatingSystem: PlatformFamily.Windows,
+	preferredBuildAgentOperatingSystem: PlatformFamily.Linux,
 	preferredBuildProviderType: BuildProviderType.GitHubActions,
 	repositoryName: "Cake.Addin.Analyzer",
 	repositoryOwner: "WormieCorp",
