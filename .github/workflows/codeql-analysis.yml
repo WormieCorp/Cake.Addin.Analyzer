@@ -45,7 +45,8 @@ jobs:
           languages: ${{ matrix.language }}
       - name: Prepare Autobuild
         run: |
-          ./build.sh --target=Transform-Text-Templates
+          dotnet tool restore
+          dotnet t4 src/Cake.Addin.Analyzer.Tests/TestFiles/TestTemplates.tt
 
       # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
       # If this step fails, then you should remove it and run the build manually (see below)
