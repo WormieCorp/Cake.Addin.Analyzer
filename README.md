@@ -33,7 +33,7 @@ dotnet add package Cake.Addin.Analyzer
 There is nothing specifically that needs to be done to use the analyzer.
 It will automatically run when calling `dotnet build`, or when opening a file in Visual Studio.
 
-You can configure the severity of each rule using a editorconfig file (see each rule for details on how here: <https://github.com/WormieCorp/Cake.Addin.Analyzer/wiki>).
+You can configure the severity of each rule using a editorconfig file (see each rule for details on how here: <https://wormiecorp.github.io/Cake.Addin.Analyzer/rules>).
 
 ## Maintainers
 

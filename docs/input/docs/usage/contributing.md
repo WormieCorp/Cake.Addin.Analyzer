@@ -8,7 +8,7 @@ even just finding issues!
 
 ## Reporting Issues
 
-All issues should be tracked at [GitHub](https://github.com/WormieCorp/Cake.Addin.Analyzer),
+All issues should be tracked at [GitHub](https://github.com/WormieCorp/Cake.Addin.Analyzer/issues),
 with enough information to reproduce the issue.
 
 ## Code Contributions

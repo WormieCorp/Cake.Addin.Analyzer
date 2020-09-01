@@ -167,5 +167,5 @@ At the very least, please try to:
 [idiomatic-contributing]: https://github.com/jonschlinkert/idiomatic-contributing
 [mastering-md]: https://guides.github.com/features/mastering-markdown/
 [md-cheatsheet]: https://gist.github.com/jonschlinkert/5854601
-[project]: https://github.com/WormieCorp/Cake.Addin.Analyzer
+[project]: https://github.com/WormieCorp/Cake.Addin.Analyzer/
 [stackoverflow]: https://stackoverflow.com/

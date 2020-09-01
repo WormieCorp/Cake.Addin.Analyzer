@@ -17,7 +17,7 @@
 		<PackageId>Cake.Addin.Analyzer</PackageId>
 		<Authors>Kim J. Nordmo</Authors>
 		<PackageLicenseUrl></PackageLicenseUrl>
-		<PackageProjectUrl>https://wormiecorp.github.io/Cake.Addin.Analyzer</PackageProjectUrl>
+		<PackageProjectUrl>https://wormiecorp.github.io/Cake.Addin.Analyzer/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/WormieCorp/Cake.Addin.Analyzer.git</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Description>Cake.Addin.Analyzer</Description>
