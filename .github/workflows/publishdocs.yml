@@ -1,0 +1,18 @@
+name: Publish Documentation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-docs:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the requested branch
+        uses: actions/checkout@v2.3.1
+        with:
+          fetch-depth: 0
+      - name: Forcing documentation publishing
+        run: ./build.sh --target=Force-Publish-Documentation
