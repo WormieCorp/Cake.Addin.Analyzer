@@ -20,7 +20,7 @@
 		<PackageProjectUrl>https://wormiecorp.github.io/Cake.Addin.Analyzer/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/WormieCorp/Cake.Addin.Analyzer.git</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<Description>Cake.Addin.Analyzer</Description>
+		<Description>Analyzer for cake addins to detect if there are any recommended or required changes that can be done.</Description>
 		<Copyright>Copyright © $(FullYear) - $(Authors.Replace(';', ','))</Copyright>
 		<PackageTags>Cake.Addin.Analyzer, analyzers, cake, cake-contrib</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

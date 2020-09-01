@@ -2,8 +2,8 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
 		<Identity Id="Cake.Addin.Analyzer.d530380e-aed8-406e-8071-c0abfc100e58" Version="1.0" Language="en-US" Publisher="Kim J. Nordmo" />
-		<DisplayName>Cake.Addin.Analyzer</DisplayName>
-		<Description xml:space="preserve">This is a sample diagnostic extension for the .NET Compiler Platform ("Roslyn").</Description>
+		<DisplayName>Cake Addin Analyzer</DisplayName>
+		<Description xml:space="preserve">Analyzer for cake addins to detect if there are any recommended or required changes that can be done.</Description>
 	</Metadata>
 	<Installation>
 		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0,)" />
