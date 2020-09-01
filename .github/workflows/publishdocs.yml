@@ -7,6 +7,9 @@ jobs:
   publish-docs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WYAM_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WYAM_DEPLOY_REMOTE: "https://github.com/WormieCorp/Cake.Addin.Analyzer"
+      WYAM_DEPLOY_BRANCH: "gh-pages"
     runs-on: ubuntu-latest
 
     steps:
