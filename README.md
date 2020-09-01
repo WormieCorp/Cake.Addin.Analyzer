@@ -41,6 +41,8 @@ You can configure the severity of each rule using a editorconfig file (see each 
 
 ## Contributing
 
+See [the contributing file](CONTRIBUTING.md)!
+
 PRs accepted.
 
 Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.

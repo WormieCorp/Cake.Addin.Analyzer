@@ -2,7 +2,7 @@
 	<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets')" />
 	<PropertyGroup>
 		<!-- We can only run .NET 4.6.1 on windows, due to mono having some required classes being inaccessible -->
-		<!-- https://github.com/AdmiringWorm/Cake.Addin.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
+		<!-- https://github.com/WormieCorp/Cake.Addin.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
 		<TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)'!='Unix'">$(TargetFrameworks);net461</TargetFrameworks>
 
