@@ -11,7 +11,7 @@ BuildParameters.SetParameters(
 	preferredBuildProviderType: BuildProviderType.GitHubActions,
 	repositoryName: "Cake.Addin.Analyzer",
 	repositoryOwner: "AdmiringWorm",
-	shouldRunCodecov: true,
+	shouldRunCodecov: !EnvironmentVariable("SKIP_CODECOV", false),
 	shouldRunCoveralls: false,
 	shouldRunDotNetCorePack: true,
 	shouldRunDupFinder: false,
@@ -22,6 +22,13 @@ BuildParameters.SetParameters(
 	sourceDirectoryPath: "./src",
 	title: "Cake Addin Analyzer"
 );
+
+var feedzUrl = EnvironmentVariable("FEEDZ_SOURCE");
+
+if (!string.IsNullOrEmpty(feedzUrl))
+{
+	BuildParameters.PackageSources.Add(new PackageSourceData(Context, "FEEDZ", feedzUrl, FeedType.NuGet, false));
+}
 
 BuildParameters.PrintParameters(Context);
 

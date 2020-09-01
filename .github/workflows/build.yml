@@ -10,10 +10,10 @@ jobs:
         os: [windows-latest, ubuntu-latest]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GPR_SOURCE: "https://nuget.pkg.github.com/WormieCorp/index.json"
-      GPR_USER: "github-actions"
-      GPR_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      FEEDZ_SOURCE: "https://f.feedz.io/wormiecorp/packages/nuget/index.json"
+      FEEDZ_API_KEY: ${{ secrets.FEEDZ_API_KEY }}
       NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
     steps:
       - uses: actions/checkout@v2.2.0
@@ -36,7 +36,10 @@ jobs:
           SET DOTNET_31_ROOT=%DOTNET_ROOT:3.1.300=2.1.806%
           xcopy /s /y /d %DOTNET_31_ROOT% %DOTNET_ROOT%
         shell: cmd
-      - name: Restore .NET Core tools
-        run: dotnet tool restore && dotnet cake --bootstrap
-      - name: Build and Test project
-        run: dotnet cake --verbosity=Diagnostic --target=CI
+      - name: Build project (Windows)
+        if: matrix.os == 'windows-latest'
+        run: ./build.ps1 --verbosity=Diagnostic --target=CI
+        shell: pwsh
+      - name: Build project (Unix)
+        if: matrix.os != 'windows-latest'
+        run: ./build.sh --verbosity=Diagnostic --target=CI
