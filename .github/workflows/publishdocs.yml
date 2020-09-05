@@ -17,6 +17,11 @@ jobs:
         uses: actions/checkout@v2.3.1
         with:
           fetch-depth: 0
+      - name: Cache Tools
+        uses: actions/cache@v2
+        with:
+          path: tools
+          key: ${{ runner.os }}-tools-${{ hashFiles('build.cake') }}
       - name: Forcing documentation publishing
-        run: ./build.ps1 --target=Force-Publish-Documentation
+        run: ./build.ps1 --target=Force-Publish-Documentation --verbosity Diagnostic
         shell: pwsh
