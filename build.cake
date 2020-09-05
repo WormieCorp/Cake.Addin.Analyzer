@@ -37,6 +37,10 @@ ToolSettings.SetToolSettings(
 	testCoverageExcludeByFile: "**/*Designer.cs;**/*.g.cs;**/*.g.i.cs",
 	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*"
 );
+ToolSettings.SetToolPreprocessorDirectives(
+	// Workaround until Cake.Kudu can resolve .NET Core edition
+	kuduSyncGlobalTool: "#tool nuget:?package=KuduSync.NET&version=1.5.3"
+);
 
 Task("Transform-Text-Templates")
 	.IsDependeeOf("DotNetCore-Build")
