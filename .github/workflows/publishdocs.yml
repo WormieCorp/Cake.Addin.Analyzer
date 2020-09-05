@@ -23,5 +23,5 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('build.cake') }}
       - name: Forcing documentation publishing
-        run: ./build.ps1 --target=Force-Publish-Documentation --verbosity Diagnostic
+        run: ./build.ps1 --target=Force-Publish-Documentation --verbosity=Diagnostic
         shell: pwsh
