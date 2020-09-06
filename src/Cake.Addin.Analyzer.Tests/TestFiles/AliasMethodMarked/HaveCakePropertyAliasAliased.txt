@@ -1,0 +1,13 @@
+using Cake.Core;
+using PropertyAlias = Cake.Core.Annotations.CakePropertyAliasAttribute;
+
+namespace CakeTest.Addin
+{
+    public static class CakeAddinAlias
+    {
+        [PropertyAlias]
+        public static void MyAwesomeAlias(this ICakeContext context)
+        {
+        }
+    }
+}

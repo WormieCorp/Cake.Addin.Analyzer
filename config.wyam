@@ -1,0 +1,4 @@
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
+Settings[Keys.LinkHideExtensions] = true;
+Settings[Keys.LinksUseHttps] = true;
+Settings[DocsKeys.SearchIndex] = true;

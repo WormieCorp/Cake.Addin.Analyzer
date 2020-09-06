@@ -1,0 +1,53 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FEEDZ_SOURCE: "https://f.feedz.io/wormiecorp/packages/nuget/index.json"
+      FEEDZ_API_KEY: ${{ secrets.FEEDZ_API_KEY }}
+      NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      WYAM_ACCESS_TOKEN: ${{ secrets.WYAM_ACCESS_TOKEN }}
+      WYAM_DEPLOY_REMOTE: "${{ github.event.repository.html_url }}"
+      WYAM_DEPLOY_BRANCH: "gh-pages"
+
+    steps:
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+      - name: Cache Tools
+        uses: actions/cache@v2
+        with:
+          path: tools
+          key: ${{ runner.os }}-tools-${{ hashFiles('build.cake') }}
+      - name: Setup .NET Core 2.1
+        uses: actions/setup-dotnet@v1.5.0
+        with:
+          dotnet-version: 2.1.806
+      - name: Setup .NET Core 3.1
+        uses: actions/setup-dotnet@v1.5.0
+        with:
+          dotnet-version: 3.1.300
+      - name: .net SxS Unix
+        if: matrix.os != 'windows-latest'
+        run: rsync -a ${DOTNET_ROOT/3.1.300/2.1.806}/* $DOTNET_ROOT/
+      - name: .net Sxs Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          SET DOTNET_31_ROOT=%DOTNET_ROOT:3.1.300=2.1.806%
+          xcopy /s /y /d %DOTNET_31_ROOT% %DOTNET_ROOT%
+        shell: cmd
+      - name: Build project (Windows)
+        if: matrix.os == 'windows-latest'
+        run: ./build.ps1 --verbosity=Diagnostic --target=CI
+        shell: pwsh
+      - name: Build project (Unix)
+        if: matrix.os != 'windows-latest'
+        run: ./build.sh --verbosity=Diagnostic --target=CI

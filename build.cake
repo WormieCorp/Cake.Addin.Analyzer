@@ -1,56 +1,73 @@
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
-const string solution = "./src/CakeContrib.Analyzer_core.sln";
-const string vsixProject = "./src/CakeContrib.Analyzer.Vsix/CakeContrib.Analyzer.Vsix.csproj";
+#load nuget:https://ci.appveyor.com/nuget/cake-recipe?package=Cake.Recipe&version=2.0.0-alpha0433&prerelease
+#tool nuget:?package=NuGet.CommandLine&version=5.6.0
 
-Task("Restore")
+Environment.SetVariableNames();
+
+BuildParameters.SetParameters(
+	buildSystem: BuildSystem,
+	context: Context,
+	nugetConfig: "./src/NuGet.Config",
+	preferredBuildAgentOperatingSystem: PlatformFamily.Linux,
+	preferredBuildProviderType: BuildProviderType.GitHubActions,
+	repositoryName: "Cake.Addin.Analyzer",
+	repositoryOwner: "WormieCorp",
+	shouldRunCodecov: !EnvironmentVariable("SKIP_CODECOV", false),
+	shouldRunCoveralls: false,
+	shouldRunDotNetCorePack: true,
+	shouldRunDupFinder: true,
+	shouldRunInspectCode: false, // Too many false flags
+	shouldUseDeterministicBuilds: true,
+	shouldUseTargetFrameworkPath: false,
+	solutionFilePath: "./src/Cake.Addin.Analyzer_core.sln",
+	sourceDirectoryPath: "./src",
+	title: "Cake.Addin.Analyzer"
+);
+
+var feedzUrl = EnvironmentVariable("FEEDZ_SOURCE");
+
+if (!string.IsNullOrEmpty(feedzUrl))
+{
+	BuildParameters.PackageSources.Add(new PackageSourceData(Context, "FEEDZ", feedzUrl, FeedType.NuGet, false));
+}
+
+BuildParameters.PrintParameters(Context);
+
+ToolSettings.SetToolSettings(
+	context: Context,
+	testCoverageExcludeByFile: "**/*Designer.cs;**/*.g.cs;**/*.g.i.cs",
+	testCoverageFilter: "+[*]* -[nunit.framework*]* -[NUnit3.TestAdapter*]*"
+);
+ToolSettings.SetToolPreprocessorDirectives(
+	// Workaround until Cake.Kudu can resolve .NET Core edition
+	kuduSyncGlobalTool: "#tool nuget:?package=KuduSync.NET&version=1.5.3"
+);
+
+Task("Transform-Text-Templates")
+	.IsDependeeOf("DotNetCore-Build")
 	.Does(() =>
 {
-	DotNetCoreRestore(solution);
-	DotNetCoreRestore(vsixProject);
-});
+	var ttFiles = GetFiles("src/**/*.tt");
 
-Task("Build")
-	.IsDependentOn("Restore")
-	.Does(() =>
-{
-	DotNetCoreBuild(solution, new DotNetCoreBuildSettings
+	int exitCode = 0;
+
+	foreach (var file in ttFiles)
 	{
-		Configuration = configuration,
-		NoIncremental = true,
-		NoRestore     = true
-	});
-});
+		Information("Transforming Text Template: '{0}'", file.GetFilename());
+		int newexitcode = StartProcess("dotnet",
+			new ProcessSettings {
+				Arguments = new ProcessArgumentBuilder()
+					.Append("t4")
+					.AppendQuoted(file.ToString())
+			});
+		if (exitCode == 0)
+			exitCode = newexitcode;
+	}
 
-Task("Tests")
-	.IsDependentOn("Build")
-	.Does(() =>
-{
-	DotNetCoreTest(solution, new DotNetCoreTestSettings
+	if (exitCode != 0)
 	{
-		Configuration = configuration,
-		NoBuild = true
-	});
-});
-
-Task("Create-VSix-Package")
-	.WithCriteria(IsRunningOnWindows)
-	.Does(() =>
-{
-	var latestInstallation = VSWhereLatest();
-	var expectedPath = latestInstallation + "/MSBuild/Current/Bin/MSBuild.exe";
-	if (FileExists(expectedPath))
-	{
-		MSBuild(vsixProject, new MSBuildSettings
-		{
-			Configuration = configuration,
-			ToolPath = expectedPath
-		}.SetVerbosity(Verbosity.Minimal));
+		throw new Exception("Text Template transformation failed");
 	}
 });
 
-Task("Default")
-	.IsDependentOn("Tests")
-	.IsDependentOn("Create-VSIX-Package");
 
-RunTarget(target);
+Build.RunDotNetCore();

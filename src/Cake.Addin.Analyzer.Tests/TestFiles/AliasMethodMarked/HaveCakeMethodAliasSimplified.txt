@@ -1,0 +1,14 @@
+using Cake.Core;
+using Cake.Core.Annotations;
+
+namespace Cake.Addin
+{
+    public static class CakeAddinAlias
+    {
+        [CakeMethodAlias]
+        public static void MyAwesomeAlias(this ICakeContext context, string something)
+        {
+            something = something;
+        }
+    }
+}

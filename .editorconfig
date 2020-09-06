@@ -17,3 +17,11 @@ end_of_line = lf
 indent_size = 2
 indent_style = space
 trim_trailing_whitespace = false
+
+[*.yml]
+indent_size = 2
+indent_style = space
+
+[dotnet-tools.json]
+indent_size = 2
+indent_style = space

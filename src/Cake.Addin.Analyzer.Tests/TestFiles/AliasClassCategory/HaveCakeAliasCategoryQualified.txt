@@ -1,0 +1,7 @@
+namespace CakeAddin
+{
+    [Cake.Core.Annotations.CakeAliasCategory("REPLACE_ME")]
+    public static class CakeAddinAliases
+    {
+    }
+}

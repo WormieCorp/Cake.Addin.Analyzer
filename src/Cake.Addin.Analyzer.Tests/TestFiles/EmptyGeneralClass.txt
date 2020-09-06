@@ -1,0 +1,6 @@
+namespace Cake.Addin
+{
+    public class TestClass1
+    {
+    }
+}

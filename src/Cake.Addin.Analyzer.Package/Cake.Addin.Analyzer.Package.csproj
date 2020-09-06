@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+		<IsPackageble>true</IsPackageble>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- I am lazy, so I don't want to update the year every time a new year comes around -->
+		<StartYear>2019</StartYear>
+		<EndYear>$([System.DateTime]::Today.Year)</EndYear>
+		<FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
+		<FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
+
+		<PackageId>Cake.Addin.Analyzer</PackageId>
+		<Authors>Kim J. Nordmo</Authors>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://wormiecorp.github.io/Cake.Addin.Analyzer/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/WormieCorp/Cake.Addin.Analyzer.git</RepositoryUrl>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Description>
+			Analyzer for cake addins to detect if there are any recommended or required changes that can be done.
+
+			Requires Visual Studio 2019 and MSBuild 16.4 or higher.
+		</Description>
+		<Copyright>Copyright © $(FullYear) - $(Authors.Replace(';', ','))</Copyright>
+		<PackageTags>Cake.Addin.Analyzer, analyzers, cake, cake-contrib</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<DevelopmentDependency>true</DevelopmentDependency>
+
+		<TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Cake.Addin.Analyzer.CodeFixes\Cake.Addin.Analyzer.CodeFixes.csproj" />
+		<ProjectReference Include="..\Cake.Addin.Analyzer.Rules\Cake.Addin.Analyzer.Rules.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<Target Name="_AddAnalyzersToOutput">
+		<ItemGroup>
+			<TfmSpecificPackageFile Include="$(OutputPath)\Cake.Addin.Analyzer.Rules.dll" PackagePath="analyzers/dotnet/cs" />
+			<TfmSpecificPackageFile Include="$(OutputPath)\Cake.Addin.Analyzer.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+		</ItemGroup>
+	</Target>
+</Project>

@@ -8,6 +8,8 @@
 *.sh    text    eol=lf
 
 *.md    text    whitespace=-blank-at-eol,-indent-with-non-tab,tab-in-indent
+*.yml	text	whitespace=-indent-with-non-tab,tab-in-indent
+dotnet-tools.json text whitespace=-indent-with-non-tab,tab-in-indent
 
 # While these are text files, we should still treat them as binaries
 *.resx  binary
