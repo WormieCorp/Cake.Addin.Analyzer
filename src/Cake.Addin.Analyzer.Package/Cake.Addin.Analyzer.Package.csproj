@@ -9,7 +9,7 @@
 
 	<PropertyGroup>
 		<!-- I am lazy, so I don't want to update the year every time a new year comes around -->
-		<StartYear>2019</StartYear>
+		<StartYear>2020</StartYear>
 		<EndYear>$([System.DateTime]::Today.Year)</EndYear>
 		<FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
 		<FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
