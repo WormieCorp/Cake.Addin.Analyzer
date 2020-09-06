@@ -8,9 +8,9 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       WYAM_ACCESS_TOKEN: ${{ secrets.WYAM_ACCESS_TOKEN }}
-      WYAM_DEPLOY_REMOTE: "https://github.com/WormieCorp/Cake.Addin.Analyzer"
+      WYAM_DEPLOY_REMOTE: "https://github.com/${{ github.repository }}"
       WYAM_DEPLOY_BRANCH: "gh-pages"
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout the requested branch
@@ -23,5 +23,4 @@ jobs:
           path: tools
           key: ${{ runner.os }}-doc-tools-${{ hashFiles('build.cake') }}
       - name: Forcing documentation publishing
-        run: ./build.ps1 --target=Force-Publish-Documentation --verbosity=Diagnostic
-        shell: pwsh
+        run: ./build.sh --target=Force-Publish-Documentation --verbosity=Diagnostic
