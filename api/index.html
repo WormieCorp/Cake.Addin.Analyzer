@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Building on Windows</title>
+        <title>Cake.Addin.Analyzer - API</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -58,9 +58,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
+                                    <li><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
         <li><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
-        <li><a href="/Cake.Addin.Analyzer/api">API</a></li>
+        <li class="active"><a href="/Cake.Addin.Analyzer/api">API</a></li>
  
                         </ul>       
                     </div>
@@ -74,35 +74,63 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/docs/building/windows.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
                 <section class="sidebar">    
                                      
                     
+	
+	    <script src="/Cake.Addin.Analyzer/assets/js/lunr.min.js"></script>
+    <script src="/Cake.Addin.Analyzer/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+
 
                     <ul class="sidebar-menu">
                         
-
-                <li class="treeview active">
-                    <a href="/Cake.Addin.Analyzer/docs/building">Building</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li class="selected"><a href="/Cake.Addin.Analyzer/docs/building/windows">Building on Windows</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/linux">Building on Linux</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/macos">Building on OSX</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/Cake.Addin.Analyzer/docs/usage">Usage</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/Cake.Addin.Analyzer/docs/usage/contributing">Contributing</a></li>
-
-                    </ul>
-                </li>
 
                     </ul>
                             
@@ -116,27 +144,50 @@
 
 
 		<section class="content-header">
-			<h1>Building on Windows</h1>
+			<h1>API</h1>
 		</section>
 	<section class="content">
-		<h2 id="requirements">Requirements</h2>
-<p>The following are needed to build the Analyzer on Windows:</p>
-<ul>
-<li>Visual Studio 2019</li>
-<li>.NET Core SDK 3.1 and 2.1</li>
-<li>.NET Framework 4.6.1</li>
-</ul>
-<p>All other dependencies will be automatically downloaded when invoking the build script.</p>
-<h2 id="invoking-the-build-itself">Invoking the build itself</h2>
-<ol>
-<li>To build the Analyzer, just open powershell
-and navigate to the root of downloaded/cloned repository.</li>
-<li>After that just type <code>.\build.ps1</code> and everything will be automatically
-built and all unit tests will run as well as a nuget package will be created.</li>
-</ol>
-<p><em>NOTE: If you wish to build and debug the VSIX extension, you need
-to launch Visual Studio 2019 and build the project through that</em></p>
+		
 
+
+			<h1 id="Namespaces">Namespaces</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Namespace</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake">Cake</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake.Addin">Cake<wbr>.Addin</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer">Cake<wbr>.Addin<wbr>.Analyzer</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes">Cake<wbr>.Addin<wbr>.Analyzer<wbr>.CodeFixes</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants">Cake<wbr>.Addin<wbr>.Analyzer<wbr>.Constants</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules">Cake<wbr>.Addin<wbr>.Analyzer<wbr>.Rules</a></td>
+									<td></td>
+							</tr>
+					</table>
+				</div>
+			</div>
+		  
 	</section>
                 
             </div>           
