@@ -39,6 +39,48 @@ var searchModule = function() {
     a(
         {
             id:0,
+            title:"AliasClassCategoryRule",
+            content:"AliasClassCategoryRule",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/AliasClassCategoryRule',
+            title:"AliasClassCategoryRule",
+            description:""
+        }
+    );
+    a(
+        {
+            id:1,
+            title:"Identifiers",
+            content:"Identifiers",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Identifiers',
+            title:"Identifiers",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
+            title:"BaseCodeFixProvider",
+            content:"BaseCodeFixProvider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/BaseCodeFixProvider',
+            title:"BaseCodeFixProvider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
             title:"AliasClassCategoryCodeFixProvider",
             content:"AliasClassCategoryCodeFixProvider",
             description:'',
@@ -47,48 +89,6 @@ var searchModule = function() {
         {
             url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/AliasClassCategoryCodeFixProvider',
             title:"AliasClassCategoryCodeFixProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
-            title:"AliasMethodMarkedCodeFixProvider",
-            content:"AliasMethodMarkedCodeFixProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/AliasMethodMarkedCodeFixProvider',
-            title:"AliasMethodMarkedCodeFixProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
-            title:"BaseRule",
-            content:"BaseRule",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/BaseRule',
-            title:"BaseRule",
-            description:""
-        }
-    );
-    a(
-        {
-            id:3,
-            title:"Categories",
-            content:"Categories",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Categories',
-            title:"Categories",
             description:""
         }
     );
@@ -109,34 +109,6 @@ var searchModule = function() {
     a(
         {
             id:5,
-            title:"BaseCodeFixProvider",
-            content:"BaseCodeFixProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/BaseCodeFixProvider',
-            title:"BaseCodeFixProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:6,
-            title:"AliasClassCategoryRule",
-            content:"AliasClassCategoryRule",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/AliasClassCategoryRule',
-            title:"AliasClassCategoryRule",
-            description:""
-        }
-    );
-    a(
-        {
-            id:7,
             title:"AliasMethodMarkedRule",
             content:"AliasMethodMarkedRule",
             description:'',
@@ -150,15 +122,43 @@ var searchModule = function() {
     );
     a(
         {
-            id:8,
-            title:"Identifiers",
-            content:"Identifiers",
+            id:6,
+            title:"AliasMethodMarkedCodeFixProvider",
+            content:"AliasMethodMarkedCodeFixProvider",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Identifiers',
-            title:"Identifiers",
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/AliasMethodMarkedCodeFixProvider',
+            title:"AliasMethodMarkedCodeFixProvider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:7,
+            title:"BaseRule",
+            content:"BaseRule",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/BaseRule',
+            title:"BaseRule",
+            description:""
+        }
+    );
+    a(
+        {
+            id:8,
+            title:"Categories",
+            content:"Categories",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Categories',
+            title:"Categories",
             description:""
         }
     );

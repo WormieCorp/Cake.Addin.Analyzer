@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Rules</title>
+        <title>Cake.Addin.Analyzer - CBA0001</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -74,7 +74,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/cba0001.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -86,7 +86,7 @@
                         
 
             <li class="header">Documentation</li>
-                <li><a href="/Cake.Addin.Analyzer/rules/cba0001">CBA0001</a></li>
+                <li class="selected"><a href="/Cake.Addin.Analyzer/rules/cba0001">CBA0001</a></li>
             <li class="header">Usage</li>
                 <li><a href="/Cake.Addin.Analyzer/rules/cba0002">CBA0002</a></li>
 
@@ -102,46 +102,52 @@
 
 
 		<section class="content-header">
-			<h1>Rules</h1>
+			<h1>CBA0001</h1>
 		</section>
 	<section class="content">
-		<p>All rules available in the analyzer</p>
-
-			<div class="box">
-				<div class="box-body no-padding">
-					<table class="table table-striped table-hover two-cols-alt table-responsive">
-							<thead>
-								<tr class="active"><th colspan="2">Documentation</th></tr>
-							</thead>
-						
-						<tbody>
-								<tr>
-									<td><strong><a href="/Cake.Addin.Analyzer/rules/cba0001">CBA0001</a></strong></td>
-									<td>
-Cake aliases should be marked with a category to be discovered more easily on cakebuild.net									</td>
-								</tr>
-						</tbody>				
-					</table>
-				</div>
-			</div> 
-			<div class="box">
-				<div class="box-body no-padding">
-					<table class="table table-striped table-hover two-cols-alt table-responsive">
-							<thead>
-								<tr class="active"><th colspan="2">Usage</th></tr>
-							</thead>
-						
-						<tbody>
-								<tr>
-									<td><strong><a href="/Cake.Addin.Analyzer/rules/cba0002">CBA0002</a></strong></td>
-									<td>
-Cake method aliases need to be marked with either a CakeMethodAlias or a CakePropertyAlias to be correctly identified and imported by the cake runner									</td>
-								</tr>
-						</tbody>				
-					</table>
-				</div>
-			</div> 
-
+		<blockquote class="blockquote">
+<p>Cake aliases should be marked with a category to be discovered more easily on <a href="https://cakebuild.net">https://cakebuild.net</a></p>
+</blockquote>
+<h2 id="cause">Cause</h2>
+<p>An alias class without the <code>CakeAliasCategory</code> attribute was found.</p>
+<h2 id="rule-description">Rule Description</h2>
+<p>A violation of this rule occurs when there is a class that ends with <code>Alias</code> or
+<code>Aliases</code> that have not been marked with a <code>CakeAliasCategory</code> attribute.
+This attribute is recommended to be used to document in which category the adding
+is under.</p>
+<h2 id="how-to-fix-violations">How to fix violations</h2>
+<p>To fix a violation of this rule, ensure that there is a <code>CakeAliasCategory</code>
+(namespace <code>Cake.Core.Annotations</code>) available on every alias class.
+<em>A code fix is provided using the light bulb to make this easier.</em></p>
+<h2 id="how-to-suppress-violations">How to suppress violations</h2>
+<p>It is not generally recommended to suppress this violation,
+and false flags should be reported in the respective repository.</p>
+<h2 id="changing-severity-using.editorconfig">Changing severity using <code>.editorconfig</code></h2>
+<p>The severity (and thus suppression) can be changed by using the
+editorconfig file by using:</p>
+<pre><code class="language-editorconfig">[*.cs]
+dotnet_diagnostic.CBA0001.severity = none
+</code></pre>
+<h3 id="suppress-in-project-file">Suppress in project file</h3>
+<p>You can suppress the warning by using the <code>&lt;NoWarn&gt;</code> element in the <code>csproj</code>
+project file.</p>
+<pre><code class="language-xml">&lt;NoWarn&gt;$(NoWarn);CBA0001&lt;/NoWarn&gt;
+</code></pre>
+<p><em>NOTE: You may have to open and close the solution for the changes to take effect</em>.</p>
+<h3 id="suppressing-in-code">Suppressing in code</h3>
+<p>The violation can be suppressed in code using an attribute (either on class, or global)</p>
+<pre><code class="language-cs">[SuppressMessage(&quot;Documentation&quot;,
+                 &quot;CBA0001:Missing Cake Alias Category&quot;,
+                 Justification = &quot;False Positive&quot;)]
+</code></pre>
+<p>Or by using pragma</p>
+<pre><code class="language-cs">#pragma warning disable CBA0001 // Missing Cake Alias Category
+#pragma warning restore CBA0001 // Missing Cake Alias Category
+</code></pre>
+<h2 id="additional-links">Additional Links</h2>
+<ul>
+<li><a href="https://cakebuild.net/docs/contributing/documentation#classes">https://cakebuild.net/docs/contributing/documentation#classes</a></li>
+</ul>
 
 	</section>
                 
