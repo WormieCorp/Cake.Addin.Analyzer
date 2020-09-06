@@ -20,10 +20,10 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('build.cake') }}
       - name: Set up git version
-        if: ${{ !contains(github.ref, "/hotfix/") && !contains(github.ref, "/release/") }}
+        if: ${{ !contains(github.ref, '/hotfix/') && !contains(github.ref, '/release/') }}
         uses: gittools/actions/gitversion/setup@v0.9.4
       - name: Run git version
-        if: ${{ !contains(github.ref, "/hotfix/") && !contains(github.ref, "/release/") }}
+        if: ${{ !contains(github.ref, '/hotfix/') && !contains(github.ref, '/release/') }}
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.4
       - name: Create release branch ${{ github.event.inputs.version }}
