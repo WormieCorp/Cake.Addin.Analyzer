@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>https://wormiecorp.github.io/Cake.Addin.Analyzer</id>
+	<title>Cake.Addin.Analyzer</title>
+	<link rel="self" href="https://wormiecorp.github.io/Cake.Addin.Analyzer" />
+	<rights>2020</rights>
+	<updated>2020-09-06T12:55:12Z</updated>
+</feed>

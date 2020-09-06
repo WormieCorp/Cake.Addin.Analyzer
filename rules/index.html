@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Cake Addin Analyzer</title>
+        <title>Cake.Addin.Analyzer - Rules</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">    
+    <body class="hold-transition wyam layout-boxed  ">    
         <div class="top-banner"></div>
         <div class="wrapper with-container">
             <!-- Header -->
@@ -43,6 +43,10 @@
                          
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
                                         
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -55,7 +59,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
-        <li><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
+        <li class="active"><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
  
                         </ul>       
                     </div>
@@ -66,10 +70,10 @@
             </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -79,6 +83,11 @@
 
                     <ul class="sidebar-menu">
                         
+
+            <li class="header">Documentation</li>
+                <li><a href="/Cake.Addin.Analyzer/rules/CBA0001">CBA0001</a></li>
+            <li class="header">Usage</li>
+                <li><a href="/Cake.Addin.Analyzer/rules/CBA0002">CBA0002</a></li>
 
                     </ul>
                             
@@ -92,34 +101,46 @@
 
 
 		<section class="content-header">
-			<h1>Cake Addin Analyzer</h1>
+			<h1>Rules</h1>
 		</section>
 	<section class="content">
-		
-<div class="container-fluid">
-	<h1>What is it?</h1>
-	<p>
-		Cake Addin Analyzer is a roslyn analyzer for analyzing a addin project regarding recommended and required rules
-		that each addin is expected to follow.
-	</p>
+		<p>All rules available in the analyzer</p>
 
-	<h2>Where to get it</h2>
-	<p>
-		Officially published versions are available on
-		<a href="https://www.nuget.org/packages/Cake.Addin.Analyzer/" target="_blank">
-			NuGet
-		</a>.
-		While development versions are made available on
-		<a href="https://feedz.io/org/wormiecorp/repository/packages/packages/Cake.Addin.Analyzer">
-			feedz.io (https://feedz.io/org/wormiecorp/repository/packages/packages/Cake.Addin.Analyzer)
-		</a>
-	</p>
+			<div class="box">
+				<div class="box-body no-padding">
+					<table class="table table-striped table-hover two-cols-alt table-responsive">
+							<thead>
+								<tr class="active"><th colspan="2">Documentation</th></tr>
+							</thead>
+						
+						<tbody>
+								<tr>
+									<td><strong><a href="/Cake.Addin.Analyzer/rules/CBA0001">CBA0001</a></strong></td>
+									<td>
+Cake aliases should be marked with a category to be discovered more easily on cakebuild.net									</td>
+								</tr>
+						</tbody>				
+					</table>
+				</div>
+			</div> 
+			<div class="box">
+				<div class="box-body no-padding">
+					<table class="table table-striped table-hover two-cols-alt table-responsive">
+							<thead>
+								<tr class="active"><th colspan="2">Usage</th></tr>
+							</thead>
+						
+						<tbody>
+								<tr>
+									<td><strong><a href="/Cake.Addin.Analyzer/rules/CBA0002">CBA0002</a></strong></td>
+									<td>
+Cake method aliases need to be marked with either a CakeMethodAlias or a CakePropertyAlias to be correctly identified and imported by the cake runner									</td>
+								</tr>
+						</tbody>				
+					</table>
+				</div>
+			</div> 
 
-	<h3>Visual Studio/MSBuild support</h3>
-	<p>
-		This analyzer requires Visual Studio 2019 on windows, and MSBuild 16.0+ on unix platforms.
-	</p>
-</div>
 
 	</section>
                 

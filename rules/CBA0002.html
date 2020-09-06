@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Cake Addin Analyzer</title>
+        <title>Cake.Addin.Analyzer - CBA0002</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">    
+    <body class="hold-transition wyam layout-boxed  ">    
         <div class="top-banner"></div>
         <div class="wrapper with-container">
             <!-- Header -->
@@ -43,6 +43,10 @@
                          
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
                                         
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -55,7 +59,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
-        <li><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
+        <li class="active"><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
  
                         </ul>       
                     </div>
@@ -66,10 +70,10 @@
             </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/CBA0002.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -79,6 +83,11 @@
 
                     <ul class="sidebar-menu">
                         
+
+            <li class="header">Documentation</li>
+                <li><a href="/Cake.Addin.Analyzer/rules/CBA0001">CBA0001</a></li>
+            <li class="header">Usage</li>
+                <li class="selected"><a href="/Cake.Addin.Analyzer/rules/CBA0002">CBA0002</a></li>
 
                     </ul>
                             
@@ -92,34 +101,53 @@
 
 
 		<section class="content-header">
-			<h1>Cake Addin Analyzer</h1>
+			<h1>CBA0002</h1>
 		</section>
 	<section class="content">
-		
-<div class="container-fluid">
-	<h1>What is it?</h1>
-	<p>
-		Cake Addin Analyzer is a roslyn analyzer for analyzing a addin project regarding recommended and required rules
-		that each addin is expected to follow.
-	</p>
-
-	<h2>Where to get it</h2>
-	<p>
-		Officially published versions are available on
-		<a href="https://www.nuget.org/packages/Cake.Addin.Analyzer/" target="_blank">
-			NuGet
-		</a>.
-		While development versions are made available on
-		<a href="https://feedz.io/org/wormiecorp/repository/packages/packages/Cake.Addin.Analyzer">
-			feedz.io (https://feedz.io/org/wormiecorp/repository/packages/packages/Cake.Addin.Analyzer)
-		</a>
-	</p>
-
-	<h3>Visual Studio/MSBuild support</h3>
-	<p>
-		This analyzer requires Visual Studio 2019 on windows, and MSBuild 16.0+ on unix platforms.
-	</p>
-</div>
+		<blockquote class="blockquote">
+<p>Cake method aliases need to be marked with either a CakeMethodAlias or a
+CakePropertyAlias to be correctly identified and imported by the cake runner</p>
+</blockquote>
+<h2 id="cause">Cause</h2>
+<p>An alias method is available, but have not been marked with a <code>CakeMethodAlias</code>
+or a <code>CakePropertyAlias</code>.</p>
+<h2 id="rule-description">Rule Description</h2>
+<p>A violation of this rule occurs when there is a method with the first parameter
+that matches (<code>this ICakeContext</code>) is available, but have not yet been marked as
+an alias by using either <code>CakeMethodAlias</code> or a <code>CakePropertyAlias</code> attribute.
+One of these attributes is required to be used for <a href="https://cakebuild.net">Cake</a>
+to correctly identify and import alias methods.</p>
+<h2 id="how-to-fix-violations">How to fix violations</h2>
+<p>To fix a violation of this rule, ensure that there is a <code>CakeMethodAlias</code> or a
+<code>CakePropertyAlias</code> being used on each method that uses <code>this ICakeContext</code> as
+their first parameter.
+<em>A code fix is provided using the light bulb to make this easier</em>.</p>
+<h2 id="how-to-suppress-violations">How to suppress violations</h2>
+<p>Unless there is a false positive, this rule should <strong>NOT</strong> be suppressed,
+but in case of false positive, it can be suppressed in the following ways.</p>
+<h3 id="changing-severity-using.editorconfig">Changing severity using <code>.editorconfig</code></h3>
+<p>The severity (and thus suppression) can be changed by using the editorconfig
+file by using:</p>
+<pre><code class="language-editorconfig">[*.cs]
+# CBA0002: Missing attribute to mark method as an alias.
+dotnet_diagnostic.CBA0002.severity = none
+</code></pre>
+<h3 id="suppress-in-project-file">Suppress in project file</h3>
+<p>You can suppress the warning by using the <code>&lt;NoWarn&gt;</code> element in the <code>csproj</code>
+project file.</p>
+<pre><code class="language-xml">&lt;NoWarn&gt;$(NoWarn);CBA0002&lt;/NoWarn&gt;
+</code></pre>
+<p><em>NOTE: You may have to open and close the solution for the changes to take effect</em>.</p>
+<h3 id="suppressing-in-code">Suppressing in code</h3>
+<p>The violation can be suppressed in code using an attribute (either on class, or global)</p>
+<pre><code class="language-cs">[SuppressMessage(&quot;Usage&quot;,
+                 &quot;CBA0002:Missing attribute to mark method as an alias.&quot;,
+                 Justification = &quot;False Positive&quot;)]
+</code></pre>
+<p>Or by using pragma</p>
+<pre><code class="language-cs">#pragma warning disable CBA0002 // Missing attribute to mark method as an alias.
+#pragma warning restore CBA0002 // Missing attribute to mark method as an alias.
+</code></pre>
 
 	</section>
                 
