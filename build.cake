@@ -1,4 +1,4 @@
-#load nuget:https://ci.appveyor.com/nuget/cake-recipe?package=Cake.Recipe&version=2.0.0-alpha0417&prerelease
+#load nuget:https://ci.appveyor.com/nuget/cake-recipe?package=Cake.Recipe&version=2.0.0-alpha0433&prerelease
 #tool nuget:?package=NuGet.CommandLine&version=5.6.0
 
 Environment.SetVariableNames();
@@ -14,7 +14,7 @@ BuildParameters.SetParameters(
 	shouldRunCodecov: !EnvironmentVariable("SKIP_CODECOV", false),
 	shouldRunCoveralls: false,
 	shouldRunDotNetCorePack: true,
-	shouldRunDupFinder: false,
+	shouldRunDupFinder: true,
 	shouldRunInspectCode: false, // Too many false flags
 	shouldUseDeterministicBuilds: true,
 	shouldUseTargetFrameworkPath: false,
