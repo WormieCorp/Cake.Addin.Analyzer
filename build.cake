@@ -3,12 +3,21 @@
 
 Environment.SetVariableNames();
 
+var platform = PlatformFamily.Linux;
+var provider = BuildProviderType.GitHubActions;
+
+if (HasEnvironmentVariable("APPVEYOR") && EnvironmentVariable("APPVEYOR_REPO_TAG", false))
+{
+	platform = PlatformFamily.Windows;
+	provider = BuildProviderType.AppVeyor;
+}
+
 BuildParameters.SetParameters(
 	buildSystem: BuildSystem,
 	context: Context,
 	nugetConfig: "./src/NuGet.Config",
-	preferredBuildAgentOperatingSystem: PlatformFamily.Linux,
-	preferredBuildProviderType: BuildProviderType.GitHubActions,
+	preferredBuildAgentOperatingSystem: platform,
+	preferredBuildProviderType: provider,
 	repositoryName: "Cake.Addin.Analyzer",
 	repositoryOwner: "WormieCorp",
 	shouldRunCodecov: !EnvironmentVariable("SKIP_CODECOV", false),

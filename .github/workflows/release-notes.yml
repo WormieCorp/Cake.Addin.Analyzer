@@ -6,7 +6,7 @@ on:
 jobs:
   draft-stable:
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.DRAFT_TOKEN }}
     runs-on: ubuntu-latest
 
     steps:
