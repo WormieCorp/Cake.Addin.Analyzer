@@ -25,8 +25,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2.2.0
+        if: ${{ github.event.action != 'published' }}
         with:
           fetch-depth: 0
+      - uses: actions/checkout@v2.2.0
+        if: ${{ github.event.action == 'published' }}
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.release.target_commitish }}
       - name: Cache Tools
         uses: actions/cache@v2
         with:
