@@ -1,6 +1,9 @@
 skip_non_tags: true
 image: Visual Studio 2019
 
+init:
+  - git config --global core.autocrlf true # Otherwise unit tests will fail
+
 build_script:
   - pwsh: ./build.ps1 --target=CI --verbosity=Diagnostic
 test: off
