@@ -52,6 +52,13 @@ namespace Cake.Addin.Analyzer.Rules
 			return ti.ConvertedType!.Equals(metaType, SymbolEqualityComparer.Default);
 		}
 
+		protected static bool HasExpectedAttribute(SymbolAnalysisContext obj, AttributeData attribute, string qualifiedTypeName)
+		{
+			var metaType = obj.Compilation.GetTypeByMetadataName(qualifiedTypeName);
+
+			return attribute.AttributeClass.Equals(metaType, SymbolEqualityComparer.Default);
+		}
+
 		protected static bool HasExpectedParameter(SyntaxNodeAnalysisContext context, ParameterSyntax parameter, string qualifiedTypeName)
 		{
 			var ti = context.SemanticModel.GetTypeInfo(parameter.Type!);
