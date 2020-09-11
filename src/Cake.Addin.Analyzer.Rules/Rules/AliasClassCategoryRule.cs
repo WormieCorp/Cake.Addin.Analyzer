@@ -11,6 +11,8 @@ namespace Cake.Addin.Analyzer.Rules
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
 	public class AliasClassCategoryRule : BaseRule
 	{
+		private const string CakeAliasCategoryAttribute = "Cake.Core.Annotations.CakeAliasCategoryAttribute";
+
 		public AliasClassCategoryRule()
 			: base(
 				Identifiers.AliasClassCategoryRule,
@@ -23,34 +25,32 @@ namespace Cake.Addin.Analyzer.Rules
 		}
 
 		protected override void RegisterActions(AnalysisContext context)
-			=> context.RegisterSyntaxNodeAction(AnalyzeClassNode, SyntaxKind.ClassDeclaration);
+			=> context.RegisterSymbolAction(AnalyzeClassSymbol, SymbolKind.NamedType);
 
-		private void AnalyzeClassNode(SyntaxNodeAnalysisContext obj)
+		private void AnalyzeClassSymbol(SymbolAnalysisContext obj)
 		{
-			if (!(obj.Node is ClassDeclarationSyntax classDeclaration))
+			if (!(obj.Symbol is INamedTypeSymbol symbol) || symbol.TypeKind != TypeKind.Class)
 			{
 				return;
 			}
 
-			var identifier = classDeclaration.Identifier;
-			var identifierText = identifier.Text;
-			if (!identifierText.EndsWith("Alias", StringComparison.OrdinalIgnoreCase) &&
-				!identifierText.EndsWith("Aliases", StringComparison.OrdinalIgnoreCase))
+			var name = symbol.Name;
+
+			if (!name.EndsWith("Alias", StringComparison.OrdinalIgnoreCase) &&
+				!name.EndsWith("Aliases", StringComparison.OrdinalIgnoreCase))
 			{
 				return;
 			}
 
-			if (classDeclaration.AttributeLists.Any())
-			{
-				var attributes = classDeclaration.AttributeLists.SelectMany(al => al.Attributes);
-				if (attributes.Any(a => HasExpectedAttribute(obj, a, "Cake.Core.Annotations.CakeAliasCategoryAttribute")))
-				{
-					return;
-				}
-			}
+			var attributes = symbol.GetAttributes();
 
-			var diagnostic = Diagnostic.Create(Rule, identifier.GetLocation(), identifierText);
-			obj.ReportDiagnostic(diagnostic);
+			var hasAttribute = attributes.Any(a => HasExpectedAttribute(obj, a, CakeAliasCategoryAttribute));
+
+			if (!hasAttribute)
+			{
+				var diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], symbol.Name);
+				obj.ReportDiagnostic(diagnostic);
+			}
 		}
 	}
 }

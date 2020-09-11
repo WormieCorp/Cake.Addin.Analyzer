@@ -26,6 +26,7 @@ namespace Cake.Addin.Analyzer.Test.Rules
 		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategoryQualified, TestName = "UsingQualifiedShouldBeValid")]
 		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategorySimplified, TestName = "UsingSimplifiedShouldBeValid")]
 		[TestCase(TestTemplates.EmptyGeneralClass, TestName = "NonAliasClassShouldBeValid")]
+		[TestCase(TestTemplates.AliasClassCategory.HaveCakeAliasCategoryPartialClass, TestName = "UsingSimplifiedShouldBeValidOnPartialClasses")]
 		public async Task ShouldBeValid(string test)
 			=> await VerifyCS.VerifyAnalyzerAsync(test);
 	}
