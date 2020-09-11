@@ -9,7 +9,7 @@
 
 	<PropertyGroup>
 		<!-- I am lazy, so I don't want to update the year every time a new year comes around -->
-		<StartYear>2019</StartYear>
+		<StartYear>2020</StartYear>
 		<EndYear>$([System.DateTime]::Today.Year)</EndYear>
 		<FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
 		<FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
@@ -26,7 +26,7 @@
 			Requires Visual Studio 2019 and MSBuild 16.4 or higher.
 		</Description>
 		<Copyright>Copyright © $(FullYear) - $(Authors.Replace(';', ','))</Copyright>
-		<PackageTags>Cake.Addin.Analyzer, analyzers, cake, cake-contrib</PackageTags>
+		<PackageTags>Cake.Addin.Analyzer, analyzers, cake, cake-addin</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<NoPackageAnalysis>true</NoPackageAnalysis>

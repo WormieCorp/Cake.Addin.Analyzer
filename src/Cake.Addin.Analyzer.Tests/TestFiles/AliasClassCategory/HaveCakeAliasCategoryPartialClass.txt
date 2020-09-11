@@ -1,0 +1,11 @@
+using Cake.Core;
+using Cake.Core.Annotations;
+
+public static partial class Aliases
+{
+}
+
+[CakeAliasCategory("Test Category")]
+public static partial class Aliases
+{
+}
