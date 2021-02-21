@@ -1,4 +1,4 @@
-#load nuget:https://ci.appveyor.com/nuget/cake-recipe?package=Cake.Recipe&version=2.0.0-alpha0433&prerelease
+#load nuget:?package=Cake.Recipe&version=2.2.0
 #tool nuget:?package=NuGet.CommandLine&version=5.6.0
 #tool dotnet:?package=dotnet-t4&version=2.0.5
 
