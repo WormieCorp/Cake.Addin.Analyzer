@@ -45,6 +45,9 @@ namespace Cake.Addin.Analyzer.Tests.Rules
 		[TestCase(TestTemplates.AliasMethodMarked.HaveCakePropertyAliasSimplified, TestName = "UsingSimplifiedPropertyShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.IsNotAAliasMethod, TestName = "NonAliasMethodShouldBeValid")]
 		[TestCase(TestTemplates.AliasMethodMarked.HaveContextButNotThis, TestName = "ContextWithoutThisKeywoardShouldBeValid")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveClassAsInternalClass, TestName = "UsingInternalClasses")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveMethodAsInternalMethod, TestName = "UsingInternalMethods")]
+		[TestCase(TestTemplates.AliasMethodMarked.HaveMethodAsPrivateMethod, TestName = "UsingPrivateMethods")]
 		public async Task ShouldBeValid(string test)
 			=> await VerifyCS.VerifyAnalyzerAsync(test);
 
