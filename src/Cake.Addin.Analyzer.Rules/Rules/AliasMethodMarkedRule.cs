@@ -29,7 +29,7 @@ namespace Cake.Addin.Analyzer.Rules
 
 		private void AnalyzeMethodNode(SyntaxNodeAnalysisContext obj)
 		{
-			if (!(obj.Node is MethodDeclarationSyntax methodDecl))
+			if (!(obj.Node is MethodDeclarationSyntax methodDecl) || !IsPublic(methodDecl))
 			{
 				return;
 			}
@@ -53,6 +53,21 @@ namespace Cake.Addin.Analyzer.Rules
 
 			var diagnostic = Diagnostic.Create(Rule, methodDecl.Identifier.GetLocation(), methodDecl.Identifier.Text);
 			obj.ReportDiagnostic(diagnostic);
+		}
+
+		private bool IsPublic(MemberDeclarationSyntax? methodDecl)
+		{
+			if (methodDecl is null || methodDecl is NamespaceDeclarationSyntax)
+			{
+				return true;
+			}
+
+			if (!methodDecl.Modifiers.Any(m => m.IsKind(SyntaxKind.PublicKeyword)))
+			{
+				return false;
+			}
+
+			return IsPublic(methodDecl.Parent as MemberDeclarationSyntax);
 		}
 	}
 }
