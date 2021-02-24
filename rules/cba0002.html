@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Building on Windows</title>
+        <title>Cake.Addin.Analyzer - CBA0002</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -58,8 +58,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
-        <li><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
+                                    <li><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
+        <li class="active"><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
         <li><a href="/Cake.Addin.Analyzer/api">API</a></li>
  
                         </ul>       
@@ -74,7 +74,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/docs/building/windows.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/cba0002.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -85,24 +85,10 @@
                     <ul class="sidebar-menu">
                         
 
-                <li class="treeview active">
-                    <a href="/Cake.Addin.Analyzer/docs/building">Building</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li class="selected"><a href="/Cake.Addin.Analyzer/docs/building/windows">Building on Windows</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/linux">Building on Linux</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/macos">Building on OSX</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/Cake.Addin.Analyzer/docs/usage">Usage</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/Cake.Addin.Analyzer/docs/usage/contributing">Contributing</a></li>
-
-                    </ul>
-                </li>
+            <li class="header">Documentation</li>
+                <li><a href="/Cake.Addin.Analyzer/rules/cba0001">CBA0001</a></li>
+            <li class="header">Usage</li>
+                <li class="selected"><a href="/Cake.Addin.Analyzer/rules/cba0002">CBA0002</a></li>
 
                     </ul>
                             
@@ -116,26 +102,53 @@
 
 
 		<section class="content-header">
-			<h1>Building on Windows</h1>
+			<h1>CBA0002</h1>
 		</section>
 	<section class="content">
-		<h2 id="requirements">Requirements</h2>
-<p>The following are needed to build the Analyzer on Windows:</p>
-<ul>
-<li>Visual Studio 2019</li>
-<li>.NET Core SDK 3.1 and 2.1</li>
-<li>.NET Framework 4.6.1</li>
-</ul>
-<p>All other dependencies will be automatically downloaded when invoking the build script.</p>
-<h2 id="invoking-the-build-itself">Invoking the build itself</h2>
-<ol>
-<li>To build the Analyzer, just open powershell
-and navigate to the root of downloaded/cloned repository.</li>
-<li>After that just type <code>.\build.ps1</code> and everything will be automatically
-built and all unit tests will run as well as a nuget package will be created.</li>
-</ol>
-<p><em>NOTE: If you wish to build and debug the VSIX extension, you need
-to launch Visual Studio 2019 and build the project through that</em></p>
+		<blockquote class="blockquote">
+<p>Cake method aliases need to be marked with either a CakeMethodAlias or a
+CakePropertyAlias to be correctly identified and imported by the cake runner</p>
+</blockquote>
+<h2 id="cause">Cause</h2>
+<p>An alias method is available, but have not been marked with a <code>CakeMethodAlias</code>
+or a <code>CakePropertyAlias</code>.</p>
+<h2 id="rule-description">Rule Description</h2>
+<p>A violation of this rule occurs when there is a method with the first parameter
+that matches (<code>this ICakeContext</code>) is available, but have not yet been marked as
+an alias by using either <code>CakeMethodAlias</code> or a <code>CakePropertyAlias</code> attribute.
+One of these attributes is required to be used for <a href="https://cakebuild.net">Cake</a>
+to correctly identify and import alias methods.</p>
+<h2 id="how-to-fix-violations">How to fix violations</h2>
+<p>To fix a violation of this rule, ensure that there is a <code>CakeMethodAlias</code> or a
+<code>CakePropertyAlias</code> being used on each method that uses <code>this ICakeContext</code> as
+their first parameter.
+<em>A code fix is provided using the light bulb to make this easier</em>.</p>
+<h2 id="how-to-suppress-violations">How to suppress violations</h2>
+<p>Unless there is a false positive, this rule should <strong>NOT</strong> be suppressed,
+but in case of false positive, it can be suppressed in the following ways.</p>
+<h3 id="changing-severity-using.editorconfig">Changing severity using <code>.editorconfig</code></h3>
+<p>The severity (and thus suppression) can be changed by using the editorconfig
+file by using:</p>
+<pre><code class="language-editorconfig">[*.cs]
+# CBA0002: Missing attribute to mark method as an alias.
+dotnet_diagnostic.CBA0002.severity = none
+</code></pre>
+<h3 id="suppress-in-project-file">Suppress in project file</h3>
+<p>You can suppress the warning by using the <code>&lt;NoWarn&gt;</code> element in the <code>csproj</code>
+project file.</p>
+<pre><code class="language-xml">&lt;NoWarn&gt;$(NoWarn);CBA0002&lt;/NoWarn&gt;
+</code></pre>
+<p><em>NOTE: You may have to open and close the solution for the changes to take effect</em>.</p>
+<h3 id="suppressing-in-code">Suppressing in code</h3>
+<p>The violation can be suppressed in code using an attribute (either on class, or global)</p>
+<pre><code class="language-cs">[SuppressMessage(&quot;Usage&quot;,
+                 &quot;CBA0002:Missing attribute to mark method as an alias.&quot;,
+                 Justification = &quot;False Positive&quot;)]
+</code></pre>
+<p>Or by using pragma</p>
+<pre><code class="language-cs">#pragma warning disable CBA0002 // Missing attribute to mark method as an alias.
+#pragma warning restore CBA0002 // Missing attribute to mark method as an alias.
+</code></pre>
 
 	</section>
                 

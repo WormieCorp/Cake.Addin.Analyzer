@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Addin.Analyzer/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Addin.Analyzer - Building on Windows</title>
+        <title>Cake.Addin.Analyzer - CBA0001</title>
         <link href="/Cake.Addin.Analyzer/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Addin.Analyzer/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/Cake.Addin.Analyzer/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -58,8 +58,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
-        <li><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
+                                    <li><a href="/Cake.Addin.Analyzer/docs">Documentation</a></li>
+        <li class="active"><a href="/Cake.Addin.Analyzer/rules">Rules</a></li>
         <li><a href="/Cake.Addin.Analyzer/api">API</a></li>
  
                         </ul>       
@@ -74,7 +74,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/docs/building/windows.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/tree/develop/docs/input/rules/cba0001.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -85,24 +85,10 @@
                     <ul class="sidebar-menu">
                         
 
-                <li class="treeview active">
-                    <a href="/Cake.Addin.Analyzer/docs/building">Building</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li class="selected"><a href="/Cake.Addin.Analyzer/docs/building/windows">Building on Windows</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/linux">Building on Linux</a></li>
-                <li><a href="/Cake.Addin.Analyzer/docs/building/macos">Building on OSX</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/Cake.Addin.Analyzer/docs/usage">Usage</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/Cake.Addin.Analyzer/docs/usage/contributing">Contributing</a></li>
-
-                    </ul>
-                </li>
+            <li class="header">Documentation</li>
+                <li class="selected"><a href="/Cake.Addin.Analyzer/rules/cba0001">CBA0001</a></li>
+            <li class="header">Usage</li>
+                <li><a href="/Cake.Addin.Analyzer/rules/cba0002">CBA0002</a></li>
 
                     </ul>
                             
@@ -116,26 +102,52 @@
 
 
 		<section class="content-header">
-			<h1>Building on Windows</h1>
+			<h1>CBA0001</h1>
 		</section>
 	<section class="content">
-		<h2 id="requirements">Requirements</h2>
-<p>The following are needed to build the Analyzer on Windows:</p>
+		<blockquote class="blockquote">
+<p>Cake aliases should be marked with a category to be discovered more easily on <a href="https://cakebuild.net">https://cakebuild.net</a></p>
+</blockquote>
+<h2 id="cause">Cause</h2>
+<p>An alias class without the <code>CakeAliasCategory</code> attribute was found.</p>
+<h2 id="rule-description">Rule Description</h2>
+<p>A violation of this rule occurs when there is a class that ends with <code>Alias</code> or
+<code>Aliases</code> that have not been marked with a <code>CakeAliasCategory</code> attribute.
+This attribute is recommended to be used to document in which category the adding
+is under.</p>
+<h2 id="how-to-fix-violations">How to fix violations</h2>
+<p>To fix a violation of this rule, ensure that there is a <code>CakeAliasCategory</code>
+(namespace <code>Cake.Core.Annotations</code>) available on every alias class.
+<em>A code fix is provided using the light bulb to make this easier.</em></p>
+<h2 id="how-to-suppress-violations">How to suppress violations</h2>
+<p>It is not generally recommended to suppress this violation,
+and false flags should be reported in the respective repository.</p>
+<h2 id="changing-severity-using.editorconfig">Changing severity using <code>.editorconfig</code></h2>
+<p>The severity (and thus suppression) can be changed by using the
+editorconfig file by using:</p>
+<pre><code class="language-editorconfig">[*.cs]
+dotnet_diagnostic.CBA0001.severity = none
+</code></pre>
+<h3 id="suppress-in-project-file">Suppress in project file</h3>
+<p>You can suppress the warning by using the <code>&lt;NoWarn&gt;</code> element in the <code>csproj</code>
+project file.</p>
+<pre><code class="language-xml">&lt;NoWarn&gt;$(NoWarn);CBA0001&lt;/NoWarn&gt;
+</code></pre>
+<p><em>NOTE: You may have to open and close the solution for the changes to take effect</em>.</p>
+<h3 id="suppressing-in-code">Suppressing in code</h3>
+<p>The violation can be suppressed in code using an attribute (either on class, or global)</p>
+<pre><code class="language-cs">[SuppressMessage(&quot;Documentation&quot;,
+                 &quot;CBA0001:Missing Cake Alias Category&quot;,
+                 Justification = &quot;False Positive&quot;)]
+</code></pre>
+<p>Or by using pragma</p>
+<pre><code class="language-cs">#pragma warning disable CBA0001 // Missing Cake Alias Category
+#pragma warning restore CBA0001 // Missing Cake Alias Category
+</code></pre>
+<h2 id="additional-links">Additional Links</h2>
 <ul>
-<li>Visual Studio 2019</li>
-<li>.NET Core SDK 3.1 and 2.1</li>
-<li>.NET Framework 4.6.1</li>
+<li><a href="https://cakebuild.net/docs/contributing/documentation#classes">https://cakebuild.net/docs/contributing/documentation#classes</a></li>
 </ul>
-<p>All other dependencies will be automatically downloaded when invoking the build script.</p>
-<h2 id="invoking-the-build-itself">Invoking the build itself</h2>
-<ol>
-<li>To build the Analyzer, just open powershell
-and navigate to the root of downloaded/cloned repository.</li>
-<li>After that just type <code>.\build.ps1</code> and everything will be automatically
-built and all unit tests will run as well as a nuget package will be created.</li>
-</ol>
-<p><em>NOTE: If you wish to build and debug the VSIX extension, you need
-to launch Visual Studio 2019 and build the project through that</em></p>
 
 	</section>
                 

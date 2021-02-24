@@ -53,6 +53,20 @@ var searchModule = function() {
     a(
         {
             id:1,
+            title:"AliasClassCategoryCodeFixProvider",
+            content:"AliasClassCategoryCodeFixProvider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/AliasClassCategoryCodeFixProvider',
+            title:"AliasClassCategoryCodeFixProvider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
             title:"BaseRule",
             content:"BaseRule",
             description:'',
@@ -61,20 +75,6 @@ var searchModule = function() {
         {
             url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/BaseRule',
             title:"BaseRule",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
-            title:"AliasClassCategoryRule",
-            content:"AliasClassCategoryRule",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/AliasClassCategoryRule',
-            title:"AliasClassCategoryRule",
             description:""
         }
     );
@@ -95,6 +95,20 @@ var searchModule = function() {
     a(
         {
             id:4,
+            title:"AliasClassCategoryRule",
+            content:"AliasClassCategoryRule",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Rules/AliasClassCategoryRule',
+            title:"AliasClassCategoryRule",
+            description:""
+        }
+    );
+    a(
+        {
+            id:5,
             title:"Categories",
             content:"Categories",
             description:'',
@@ -103,20 +117,6 @@ var searchModule = function() {
         {
             url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Categories',
             title:"Categories",
-            description:""
-        }
-    );
-    a(
-        {
-            id:5,
-            title:"Identifiers",
-            content:"Identifiers",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Identifiers',
-            title:"Identifiers",
             description:""
         }
     );
@@ -151,14 +151,14 @@ var searchModule = function() {
     a(
         {
             id:8,
-            title:"AliasClassCategoryCodeFixProvider",
-            content:"AliasClassCategoryCodeFixProvider",
+            title:"Identifiers",
+            content:"Identifiers",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.CodeFixes/AliasClassCategoryCodeFixProvider',
-            title:"AliasClassCategoryCodeFixProvider",
+            url:'/Cake.Addin.Analyzer/api/Cake.Addin.Analyzer.Constants/Identifiers',
+            title:"Identifiers",
             description:""
         }
     );
