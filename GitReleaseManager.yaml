@@ -1,13 +1,13 @@
 # Configuration values used when creating new releases
 create:
   include-footer: false
-  footer-heading: 'Where to get it'
-  footer-content: 'You can download this release from [NuGet](https://nuget.org/packages/Cake.Addin.Analyzer/{milestone})'
+  footer-heading: "Where to get it"
+  footer-content: "You can download this release from [NuGet](https://nuget.org/packages/Cake.Addin.Analyzer/{milestone})"
   footer-includes-milestone: true
-  milestone-replace-text: '{milestone}'
+  milestone-replace-text: "{milestone}"
   include-sha-section: true
   sha-section-heading: SHA256 Hashes of the release artifacts
-  sha-section-line-format: '- `{1}      {0}`'
+  sha-section-line-format: "- `{1}      {0}`"
   allow-update-to-published: false
 # Configuration values used when exporting release notes
 export:
@@ -18,7 +18,7 @@ export:
   multiline-regex: true
 # Configuration values used when closing a milestone
 close:
-# Whether to add comments to issues closed and with the published milestone release.
+  # Whether to add comments to issues closed and with the published milestone release.
   use-issue-comments: true
   issue-comment: |-
     :tada: This issue has been resolved in version {milestone} :tada:
@@ -26,19 +26,19 @@ close:
     The release is available on:
 
     - [GitHub release](https://github.com/{owner}/{repository}/releases/tag/{milestone})
-    - [NuGet package](https://nuget.org/packages/{repository}/releases/{milestone})
+    - [NuGet package](https://nuget.org/packages/{repository}/{milestone})
 
     Your **[GitReleaseManager](https://github.com/GitTools/GitReleaseManager)** bot :package::rocket:
 # The labels that will be used to include issues in release notes.
 issue-labels-include:
-- Breaking change
-- Bug
-- Documentation
-- Feature
-- Improvement
+  - Breaking change
+  - Bug
+  - Documentation
+  - Feature
+  - Improvement
 # The labels that will NOT be used when including issues in release notes.
 issue-labels-exclude:
-- Build
-- Internal Refactoring
+  - Build
+  - Internal Refactoring
 # Overrides default pluralization and header names for specific labels.
 issue-labels-alias: []
