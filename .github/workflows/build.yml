@@ -12,7 +12,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.DRAFT_TOKEN }}
       FEEDZ_SOURCE: "https://f.feedz.io/wormiecorp/packages/nuget/index.json"
       FEEDZ_API_KEY: ${{ secrets.FEEDZ_API_KEY }}
       TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_API_KEY }}
