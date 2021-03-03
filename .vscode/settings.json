@@ -3,5 +3,6 @@
 	"omnisharp.enableRoslynAnalyzers": true,
 	"[powershell]": {
 		"files.encoding": "utf16le"
-	}
+	},
+	"powershell.codeFormatting.addWhitespaceAroundPipe": true
 }
