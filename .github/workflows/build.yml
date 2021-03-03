@@ -42,5 +42,5 @@ jobs:
       - name: Build project (Unix)
         if: matrix.os != 'windows-latest'
         run: |
-          rm -f /usr/bin/nuget
+          sudo rm -f /usr/bin/nuget
           ./build.sh --verbosity=Diagnostic --target=CI
