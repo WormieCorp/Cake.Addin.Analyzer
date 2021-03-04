@@ -22,6 +22,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "gep13",
+      "name": "Gary Ewan Park",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1271146?v=4",
+      "profile": "https://www.gep13.co.uk/blog",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
