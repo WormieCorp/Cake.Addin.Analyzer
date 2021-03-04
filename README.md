@@ -1,8 +1,8 @@
-# cake-addin-analyzer
+# Cake Addin Analyzer (Cake.Addin.Analyzer)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WormieCorp/Cake.Addin.Analyzer/Build?logo=github&style=flat-square)
 ![Nuget](https://img.shields.io/nuget/v/Cake.Addin.Analyzer?logo=nuget&style=flat-square)
@@ -50,11 +50,7 @@ PRs accepted.
 
 Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
-## License
-
-[MIT © 2020-2021 Kim J. Nordmo](LICENSE.txt)
-
-## Contributors ✨
+### Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -73,3 +69,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## License
+
+[MIT © 2020-2021 Kim J. Nordmo](LICENSE.txt)
