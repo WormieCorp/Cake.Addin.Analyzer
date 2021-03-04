@@ -1,7 +1,7 @@
 # Cake Addin Analyzer (Cake.Addin.Analyzer)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WormieCorp/Cake.Addin.Analyzer/Build?logo=github&style=flat-square)
@@ -60,6 +60,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/AdmiringWorm"><img src="https://avatars.githubusercontent.com/u/1474648?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kim J. Nordmo</b></sub></a><br /><a href="#maintenance-AdmiringWorm" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/pascalberger"><img src="https://avatars.githubusercontent.com/u/2190718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pascal Berger</b></sub></a><br /><a href="https://github.com/WormieCorp/Cake.Addin.Analyzer/issues?q=author%3Apascalberger" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
