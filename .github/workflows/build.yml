@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-2019, ubuntu-18.04, macos-11]
     env:
       GITHUB_TOKEN: ${{ secrets.DRAFT_TOKEN }}
       FEEDZ_SOURCE: "https://f.feedz.io/wormiecorp/packages/nuget/index.json"
