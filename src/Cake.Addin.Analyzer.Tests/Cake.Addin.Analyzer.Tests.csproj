@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<!-- We can only run .NET 4.6.1 on windows, due to mono having some required classes being inaccessible -->
 		<!-- https://github.com/WormieCorp/Cake.Addin.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
-		<TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)'!='Unix'">$(TargetFrameworks);net461</TargetFrameworks>
 
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,7 +50,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="NUnit" Version="3.13.1" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>
