@@ -24,7 +24,7 @@ jobs:
       WYAM_DEPLOY_BRANCH: "gh-pages"
 
     steps:
-      - uses: actions/checkout@v2.2.0
+      - uses: actions/checkout@v2.4.0
         if: ${{ github.event.action != 'published' }}
         with:
           fetch-depth: 0
