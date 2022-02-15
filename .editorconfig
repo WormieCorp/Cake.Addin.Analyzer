@@ -7,7 +7,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.{ps1,bat}]
-charset = utf-16le
+charset = utf-8-bom
 end_of_line = crlf
 
 [*.sh]

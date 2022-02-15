@@ -2,6 +2,6 @@
 	"omnisharp.enableEditorConfigSupport": true,
 	"omnisharp.enableRoslynAnalyzers": true,
 	"[powershell]": {
-		"files.encoding": "utf16le"
+		"files.encoding": "utf8bom"
 	}
 }

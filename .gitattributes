@@ -3,8 +3,8 @@
 *.cs    text    diff=csharp
 *.cake  text    diff=csharp
 
-*.ps1   text    eol=crlf working-tree-encoding=UTF-16LE-BOM
-*.bat   text    eol=crlf working-tree-encoding=UTF-16LE-BOM
+*.ps1   text    eol=crlf
+*.bat   text    eol=crlf
 *.sh    text    eol=lf
 
 *.md    text    whitespace=-blank-at-eol,-indent-with-non-tab,tab-in-indent
