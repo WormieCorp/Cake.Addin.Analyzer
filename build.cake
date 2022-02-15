@@ -1,6 +1,6 @@
 #load nuget:?package=Cake.Recipe&version=2.2.1
 #tool nuget:?package=NuGet.CommandLine&version=5.6.0
-#tool dotnet:?package=dotnet-t4&version=2.0.5
+#tool dotnet:?package=dotnet-t4&version=2.2.1
 
 Environment.SetVariableNames();
 
