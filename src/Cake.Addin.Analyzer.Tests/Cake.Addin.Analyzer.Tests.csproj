@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<!-- We can only run .NET 4.6.1 on windows, due to mono having some required classes being inaccessible -->
 		<!-- https://github.com/WormieCorp/Cake.Addin.Analyzer/runs/1020258257?check_suite_focus=true#step:8:1733 -->
-		<TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 		<TargetFrameworks Condition="'$(OS)'!='Unix'">$(TargetFrameworks);net461</TargetFrameworks>
 
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -27,7 +27,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Appveyor.TestLogger" Version="2.0.0" />
-		<PackageReference Include="coverlet.msbuild" Version="3.0.3">
+		<PackageReference Include="coverlet.msbuild" Version="3.1.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
